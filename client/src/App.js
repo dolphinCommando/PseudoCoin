@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-// import NavExpand from './components/NavExpand';
+import Login from './pages/Login';
+import NavExpand from './components/NavExpand';
 import Home from './pages/Home';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
+      <Login />
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
