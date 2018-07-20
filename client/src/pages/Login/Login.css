@@ -1,0 +1,13 @@
+.sign-in-out {
+    /* background-image: url(../images/loginForm.jpg); */
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    width: auto;
+    max-width: 806px;
+    min-height: 714px;
+    margin-top: 40px;
+    border-width: 15px 13px;
+    border-style: solid;
+    border-color: #e8e7e4;
+}
