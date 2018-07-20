@@ -16,8 +16,6 @@ class App extends Component {
             <i className="fa fa-dollar">&#xf155;</i>
           </h1>
           <i className="material-icons">&#xe7f4;</i>
-          <Home />
-          <NavExpand />
         </header>
         <p className="App-intro">
           Welcome to PseudoCoin! Click on the "Current Amount" or "Investments" section, or click on the side navigation bar for "Subscriptions", "Manage", "User Profile", or "Notifications".
