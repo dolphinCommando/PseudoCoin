@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import logo from './logo.svg';
 import Login from './pages/Login';
 import NavExpand from './components/NavExpand';
@@ -22,8 +23,15 @@ class App extends Component {
         <p className="App-intro">
           Welcome to PseudoCoin! Click on the "Current Amount" or "Investments" section, or click on the side navigation bar for "Subscriptions", "Manage", "User Profile", or "Notifications".
         </p>
-        <Home />
         <NavExpand />
+        <Router>
+          <div>
+            <Switch>
+              <Route exact path="/" component={Home} />
+            </Switch>
+          </div>
+        </Router>
+        
       </div>
     );
   }
