@@ -5,12 +5,12 @@ import './NavExpand.css';
 
 const NavExpand = props => {
     return (
-      <div id="mySidenav" class="sidenav">
-        <a href="" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="searchBar">
-          <input aria-invalid="false" aria-required="false" class="searchBar" placeholder="Search" type="text" aria-label="Search" value="">
+      <div id="mySidenav" className="sidenav">
+        <a href="" className="closebtn" onClick="closeNav()">&times;</a>
+        <div className="searchBar">
+          <input aria-invalid="false" aria-required="false" className="searchBar" placeholder="Search" type="text" aria-label="Search" value="">
           </input>
-          <button class="icon"><i class="glyphicon glyphicon-search"></i></button>
+          <button className="icon"><i className="glyphicon glyphicon-search"></i></button>
           </div> 
           <a href="/">Home</a>
           <a href="/exchange">Exchange</a>
