@@ -2,8 +2,10 @@ import React from 'react';
 import logo from './logo.svg';
 import './NavExpand.css';
 
-const Exchange = () => {
-    render() {
-        return()
+class Exchange extends React.Component {
+    constructor(props) {
+      super(props);
     }
+    render()
+
 }
