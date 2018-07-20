@@ -22,6 +22,8 @@ class App extends Component {
         <p className="App-intro">
           Welcome to PseudoCoin! Click on the "Current Amount" or "Investments" section, or click on the side navigation bar for "Subscriptions", "Manage", "User Profile", or "Notifications".
         </p>
+        <Home />
+        <NavExpand />
       </div>
     );
   }
