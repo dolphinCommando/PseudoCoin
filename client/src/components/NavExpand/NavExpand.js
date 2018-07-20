@@ -8,14 +8,14 @@ const NavExpand = props => {
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         /* <div class="searchBar"> */
-          <input aria-invalid="false" aria-required="false" class="searchBar" placeholder="Search" type="text" aria-label="Search" value="">
-          <button class="icon"><i class="glyphicon glyphicon-search"></i></button></input>
+            <input aria-invalid="false" aria-required="false" class="searchBar" placeholder="Search" type="text" aria-label="Search" value="">
+            <button class="icon"><i class="glyphicon glyphicon-search">&#xe003;</i></button></input>
         /* </div> */
-          <a href="Home.js">Home</a>
-          <a href="#">Exchange</a>
-          <a href="#">Invest</a>
-          <a href="main.html">Notifications</a>
-          <a href="#">Manage</a>
+          <a href="/">Home</a>
+          <a href="/exchange">Exchange</a>
+          <a href="/invest">Invest</a>
+          <a href="/notifications">Notifications</a>
+          <a href="/manage">Manage</a>
       </div>
     );
 }
