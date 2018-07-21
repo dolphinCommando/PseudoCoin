@@ -1,22 +1,12 @@
 import React from 'react';
 import './Home.css';
-import {Line} from 'react-chartjs-2';
-import mockData from '../../data/data.js';
+import ChartTable from '../../components/ChartTable';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       sideNav: false,
-      data: {
-          labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
-          datasets: [{
-          label: "My First dataset",
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
-          data: mockData.litecoin.history,
-          }]
-      }
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -32,10 +22,9 @@ class Home extends React.Component {
       </div> 
       */
   render() {
-    console.log(this.state.data);
     return (
       <div> 
-      <Line data={this.state.data}/>
+      <ChartTable />
       </div>
     );
   }
