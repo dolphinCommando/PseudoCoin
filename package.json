@@ -15,7 +15,8 @@
     "pondjs": "^0.8.9",
     "react-chartjs-2": "^2.7.4",
     "react-router-dom": "^4.3.1",
-    "react-timeseries-charts": "^0.15.2"
+    "react-timeseries-charts": "^0.15.2",
+    "request": "^2.87.0"
   },
   "devDependencies": {},
   "scripts": {
