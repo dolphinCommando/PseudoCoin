@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './login.css';
+//import logo from './logo.svg';
+import './Login.js';
 
 class Login extends Component {
     render() {
@@ -16,14 +16,14 @@ class Login extends Component {
                                 <form action="">
                                     <div class="container">
                                         <label for="uname"><b>Username</b></label>
-                                        <input type="text" placeholder="Enter Username" name="uname" required>
+                                        <input type="text" placeholder="Enter Username" name="uname" required></input>
 
                                         <label for="psw"><b>Password</b></label>
-                                        <input type="password" placeholder="Enter Password" name="psw" required>
+                                        <input type="password" placeholder="Enter Password" name="psw" required></input>
         
                                         <button type="submit">Login</button>
-                                        <label>
-                                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                                        <label for="checkbox">
+                                            <input type="checkbox" checked="checked" name="remember">Remember me</input>
                                         </label>
                                     </div>
 

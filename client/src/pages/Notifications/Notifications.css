@@ -1,0 +1,7 @@
+.header-nav>ul>li.header-notifs .dropdown-notifs li {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: .6rem;
+    border-bottom: 1px solid #ced4e2;
+}
