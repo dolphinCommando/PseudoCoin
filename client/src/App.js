@@ -15,7 +15,9 @@ class App extends Component {
           <h1 className="App-title">PseudoCoin
             <i className="fa fa-dollar">&#xf155;</i>
           </h1>
-          <i className="material-icons">&#xe7f4;</i>
+          <button onclick="location.href= {<Notifications>};" id="notifsButton">
+            <i className="material-icons">&#xe7f4;</i>
+          </button>
         </header>
         <p className="App-intro">
           Welcome to PseudoCoin! Click on the "Current Amount" or "Investments" section, or click on the side navigation bar for "Subscriptions", "Manage", "User Profile", or "Notifications".
@@ -26,6 +28,9 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
+              {/* <Route exact path="/exchange" component={Exchange} />
+              <Route exact path="/invest" component={Invest} />
+              <Route exact path="/notifications" component={Notifications} /> */}
             </Switch>
           </div>
         </Router>
