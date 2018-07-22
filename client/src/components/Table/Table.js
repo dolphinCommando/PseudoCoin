@@ -1,10 +1,9 @@
 import React from 'react';
 import './Table.css';
-import '../../data/mockData';
 import mockData from '../../data/mockData';
 
 const Table = (props) => {
-  const tableHeaders = ['Coin', 'Price (USD)', 'Change'].map(header => <th>{header}</th>);
+  const tableHeaders = ['Name', 'Symbol', 'Price (USD)', 'Change (24h)'].map(header => <th>{header}</th>);
   let tableRows = [];
   for (let i=0; i<mockData.coins.length; i++) {
     tableRows.push(

@@ -38,12 +38,46 @@ module.exports = {
       res.json(arr);
     })
   },
-  getAvailableCoins: function() {
-    return ['BTC', 'LTC', 'ETH', 'BCH', 'XRP']
+  getRecommendedCoins: function() {
+    return ['BTC', 'ETH', 'LTC', 'XRP', 'BCH', 'EOS', 'XLM', 'ADA', 'MIOTA', 'TRX', 'NEO', 'XMR', 'ZEC', 'DASH', 'ETC'];
+
+  },
+  recommendedCoins: function(req, res) {
+    var recommend = this.getRecommendedCoins();
+    requestCrypto('https://www.cryptocompare.com/api/data/coinlist/', function(body) {
+      var data = JSON.parse(body).Data;
+      var arr = [];
+      (Object.keys(data)).forEach(function(key) {
+        var val = data[key];
+        if(recommend.includes(val.Symbol)) {
+          arr.push({
+            name: val.CoinName,
+            symbol: val.Symbol,
+            id: val.Id
+          })
+        }
+      });
+      res.json(arr)
+    })
+  },
+  topCoins: function(req, res) {
+    requestCrypto('https://www.cryptocompare.com/api/data/coinlist/', function(body) {
+      var data = JSON.parse(body).Data;
+      var arr = [];
+      (Object.keys(data)).forEach(function(key) {
+        var val = data[key];
+        if((+val.SortOrder) <= (15 || req.query.limit)) {
+          arr.push({
+            name: val.CoinName,
+            symbol: val.Symbol,
+            id: val.Id,
+            order: val.SortOrder
+          })
+        }
+      })
+      arr.sort((a, b) => +a.order - +b.order);
+      res.json(arr);
+    })
+    
   }
-}
-
-
-
-
-
+ }
