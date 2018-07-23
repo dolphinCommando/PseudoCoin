@@ -15,9 +15,8 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(routes);
 
-/*
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/nytreact');
-*/
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/cryptoTest');
+
 
 app.listen(PORT, function() {
   console.log(`🌎 ==> API server listening on port ${PORT}`);
