@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+//import logo from './logo.svg';
 import './Notifications.css';
 
-// When clicked on the Notifications favicon:
-
-// $('.material-icons').click(function() {
-
-// });
-    document.getElementById("notifsButton").onclick = function () {
+class Notifications extends React.Component {
+    constructor(props) {
+        super(props); 
+    }
+    render() {
+        return (   
         <nav className="header-nav-dropdown">
             <ul>
                 <li className="header-notifs active">
@@ -15,7 +16,7 @@ import './Notifications.css';
                 <ul className="dropdown-notifs"> 
                     <li className="dropdown-notifs-title">
                         <h3>Notifications</h3>
-                        <a href="/">Mark All As Read</a>
+                        <button onClick={this.props.onMarkedNotificationsRead}>Mark All As Read</button>
                     </li>
                     <li>
                         <a href="/"></a>
@@ -39,5 +40,8 @@ import './Notifications.css';
                 </li>
             </ul>    
         </nav>
-        location.href = "/notifications";
-    };
+    );
+  }  
+}   
+
+export default Notifications;
