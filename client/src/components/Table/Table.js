@@ -1,17 +1,22 @@
 import React from 'react';
 import './Table.css';
-import '../../data/mockData';
-import mockData from '../../data/mockData';
 
 const Table = (props) => {
-  const tableHeaders = ['Coin', 'Price (USD)', 'Change'].map(header => <th>{header}</th>);
+  const tableHeaders = [
+    'Name', 'Symbol', 'Price', 'Change (24h)', 
+    'Volume (24h)', 'Supply', 'Market Cap'
+  ].map(header => <th>{header}</th>);
   let tableRows = [];
-  for (let i=0; i<mockData.coins.length; i++) {
+  for (let i=0; i<props.prices.length; i++) {
     tableRows.push(
-      <tr onClick={(e) => props.onClick(e, i)}>
-        <td>{mockData.coins[i].name}</td>
-        <td>{mockData.coins[i].price}</td>
-        <td>{mockData.coins[i].percent}</td>
+      <tr onClick={(e) => props.onClick(e, props.names[i].symbol)}>
+        <td>{props.names[i].name}</td>
+        <td>{props.names[i].symbol}</td>
+        <td>{props.prices[i].price}</td>
+        <td>{props.prices[i].change}</td>
+        <td>{props.prices[i].volume}</td>
+        <td>{props.prices[i].supply}</td>
+        <td>{props.prices[i].cap}</td>
       </tr>
     )
   }
