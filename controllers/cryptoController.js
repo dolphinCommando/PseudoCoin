@@ -2,12 +2,12 @@ var request = require('request');
 const CRYPTO_URL = 'https://min-api.cryptocompare.com/data/';
 const COINS = [
   'BTC', 'ETH', 'LTC', 'XRP', 'BCH',
-  'XMR', 'ZEC', 'DASH', 'ETC', 'EOS', 'XLM', 
-  'ADA', 'USDT', 'TRX', 'NEO'];
+  'XMR', 'ZEC', 'DASH', 'ETC', 'USDT', 
+  'EOS', 'XLM', 'ADA', 'TRX', 'NEO'];
 const COIN_NAMES = [
   'Bitcoin', 'Ethereum', 'Litecoin', 'Ripple', 'Bitcoin Cash',
   'Monero', 'Zcash', 'Dash', 'Ethereum Classic', 
-  'EOS', 'Stellar', 'Cardano', 'Tether', 'TRON', 'NEO',
+  'Tether', 'EOS', 'Stellar', 'Cardano', 'TRON', 'NEO'
   ];
 
 function requestCrypto(url, cb) {
@@ -119,5 +119,24 @@ module.exports = {
       })
       res.json(arr);
     })
+  },
+  coinHistory: function(req, res) {
+    //var tags = ['histominute', 'histohour', 'histoday'];
+    //var tag = (tags.includes(req.params.tag)) ? req.params.tag : 'histohour';
+    var sym = (req.params.sym) ? req.params.sym : 'BTC';
+    var url = CRYPTO_URL + 'histohour' + '?fsym=' + sym + '&tsym=USD&limit=30&aggregate=3';
+    requestCrypto(url, function(body) {
+      var data = JSON.parse(body).Data;
+      var arr = [];
+      data.forEach(function(point) {
+        arr.push({
+          time: point.time,
+          close: point.close
+        })
+      })
+      //console.log(arr);
+      res.json(arr)
+    })
+
   }
  }

@@ -9,5 +9,7 @@ router.route('/top').get(crypto.topCoins)
 
 router.route('/market').post(crypto.marketDisplay)
 
+router.route('/history/:sym').get(crypto.coinHistory)
+
 module.exports = router;
 

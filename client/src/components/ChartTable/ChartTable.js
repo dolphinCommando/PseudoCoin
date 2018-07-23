@@ -1,16 +1,21 @@
 import React from 'react';
 //import mockData from '../../data/mockData';
-//import LineChart from '../LineChart';
+import LineChart from '../LineChart';
 import Table from '../Table';
 import API from '../../util/API';
+import moment from 'moment';
 
 class ChartTable extends React.Component {
   constructor(props) {
     super(props);
     this.handleTableClick = this.handleTableClick.bind(this);
+    this.loadHistory = this.loadHistory.bind(this);
     this.state = {
       coinNames: {},
-      marketData: {}
+      marketData: {},
+      dataPoints: [],
+      chartTitle: '',
+      chartLabels: []
     }
   }
   componentDidMount() {
@@ -29,6 +34,7 @@ class ChartTable extends React.Component {
             this.setState({
               marketData: result.data
             })
+            this.loadHistory('BTC')
           })
           .catch(err => {
             console.log(err)
@@ -38,27 +44,39 @@ class ChartTable extends React.Component {
         console.log(err)
       })
   }
-
-  handleTableClick(e, i) {
-    /*
-    this.setState({
-      cryptoData: mockData.coins[i]
-    })
-    */
-    console.log('Table clicked on');
+  loadHistory(symbol) {
+    API.getCryptoHistoryHour(symbol).then(response => {
+      let timearr = [];
+      let closings = [];
+      response.data.forEach(function(point) {
+        timearr.push((moment.unix(point.time).format('hh:mm a MM/DD/YY')))
+      })
+      response.data.forEach(function(point) {
+        closings.push(point.close)
+      })
+      this.setState({
+        chartLabels: timearr,
+        chartTitle: symbol,
+        dataPoints: closings
+      })
+    }).catch(err => console.log(err));
   }
-  /*
-<LineChart 
-      labels={this.state.dates} 
-      label={this.state.cryptoData.name} 
-      data={this.state.cryptoData.history} 
-      />
-  */
+
+  handleTableClick(e, sym) {
+    this.loadHistory(sym)
+  }
+ 
   render() {
     return (
     <div className="chart-table">
-      <Table onClick={this.handleTableClick} names={this.state.coinNames} prices={this.state.marketData} />
+      <LineChart 
+      labels={this.state.chartLabels} 
+      label={this.state.chartTitle} 
+      data={this.state.dataPoints} 
+      />
+      <Table onClick={this.handleTableClick} names={this.state.coinNames} prices={this.state.marketData} />     
     </div>
+    
     )
   }
 }

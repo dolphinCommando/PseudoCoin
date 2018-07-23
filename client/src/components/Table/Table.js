@@ -9,7 +9,7 @@ const Table = (props) => {
   let tableRows = [];
   for (let i=0; i<props.prices.length; i++) {
     tableRows.push(
-      <tr onClick={(e) => props.onClick(e, i)}>
+      <tr onClick={(e) => props.onClick(e, props.names[i].symbol)}>
         <td>{props.names[i].name}</td>
         <td>{props.names[i].symbol}</td>
         <td>{props.prices[i].price}</td>
