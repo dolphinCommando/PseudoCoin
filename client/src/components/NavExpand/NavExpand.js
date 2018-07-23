@@ -5,11 +5,11 @@ import './NavExpand.css';
 
 const NavExpand = props => {
     return (
-      <div id="mySidenav" class="sidenav">
+      <div id="mySidenav" className="sidenav">
         <a href="javascript:void(0)" className="closebtn" onClick="closeNav()">&times;</a>
-        /* <div class="searchBar"> */
+        /* <div className="searchBar"> */
             <input aria-invalid="false" aria-required="false" className="searchBar" placeholder="Search" type="text" aria-label="Search" value="" />
-            <button className="icon"><i class="glyphicon glyphicon-search">&#xe003;</i></button>
+            <button className="icon"><i className="glyphicon glyphicon-search">&#xe003;</i></button>
         /* </div> */
           <a href="/">Home</a>
           <a href="/exchange">Exchange</a>

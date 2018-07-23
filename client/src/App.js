@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import Login from './pages/Login';
 import NavExpand from './components/NavExpand';
+import NotifButton from './components/NotifButton';
 import Home from './pages/Home';
 import './App.css';
 
@@ -15,11 +16,9 @@ class App extends Component {
           <h1 className="App-title">PseudoCoin
             <i className="fa fa-dollar">&#xf155;</i>
           </h1>
-          <button onclick="location.href= {<Notifications>};" id="notifsButton">
-            <i className="material-icons">&#xe7f4;</i>
-          </button>
+          <NotifButton />
         </header>
-        <p className="App-intro">
+        <p className="App-intro jumbotron">
           Welcome to PseudoCoin! Click on the "Current Amount" or "Investments" section, or click on the side navigation bar for "Subscriptions", "Manage", "User Profile", or "Notifications".
         </p>
         <NavExpand />

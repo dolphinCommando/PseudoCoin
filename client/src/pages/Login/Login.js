@@ -22,15 +22,6 @@ class Login extends Component {
                                         <input type="password" placeholder="Enter Password" name="psw" required></input>
         
                                         <button type="submit">Login</button>
-                                        <label for="checkbox">
-                                            <input type="checkbox" checked="checked" name="remember">Remember me</input>
-                                        </label>
-                                        <input type="text" placeholder="Enter Username" name="uname" required />
-
-                                        <label for="psw"><b>Password</b></label>
-                                        <input type="password" placeholder="Enter Password" name="psw" required />
-        
-                                        <button type="submit">Login</button>
                                         <label>
                                             <input type="checkbox" checked="checked" name="remember"> Remember me</input>
                                         </label>
@@ -46,7 +37,7 @@ class Login extends Component {
                     </div>
                 </div>
             </div>
-     
         ) 
     }
 }
+
