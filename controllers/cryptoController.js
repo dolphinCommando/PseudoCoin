@@ -1,5 +1,14 @@
 var request = require('request');
 const CRYPTO_URL = 'https://min-api.cryptocompare.com/data/';
+const COINS = [
+  'BTC', 'ETH', 'LTC', 'XRP', 'BCH',
+  'XMR', 'ZEC', 'DASH', 'ETC', 'EOS', 'XLM', 
+  'ADA', 'USDT', 'TRX', 'NEO'];
+const COIN_NAMES = [
+  'Bitcoin', 'Ethereum', 'Litecoin', 'Ripple', 'Bitcoin Cash',
+  'Monero', 'Zcash', 'Dash', 'Ethereum Classic', 
+  'EOS', 'Stellar', 'Cardano', 'Tether', 'TRON', 'NEO',
+  ];
 
 function requestCrypto(url, cb) {
   request(url, function(error, response, body) {
@@ -15,18 +24,18 @@ function requestCrypto(url, cb) {
 
 module.exports = {
   currentPrice: function(req, res) {
-    if (!this.getAvailableCoins().includes(req.params.coin)) {
-      res.json(new Error('Please enter one of these coins: ' + acceptableCoins));
+    if (!COINS.includes(req.params.sym)) {
+      res.json(new Error('Please enter one of these coins: ' + COINS));
     }
     else {
-      var url = CRYPTO_URL + 'price?fsym=' + coin + '&tsyms=USD';
+      var url = CRYPTO_URL + 'price?fsym=' + sym + '&tsyms=USD';
       requestCrypto(url, function(body) {
         res.json(JSON.parse(body).USD)
       })
     }
   },
   currentAvailablePrices: function(req, res) {
-    var coins = this.getAvailableCoins();
+    var coins = COINS;
     var fsyms = coins.toString();
     var url = CRYPTO_URL + 'pricemulti?fsyms=' + fsyms + '&tsyms=USD';
     requestCrypto(url, function(body) {
@@ -38,12 +47,18 @@ module.exports = {
       res.json(arr);
     })
   },
-  getRecommendedCoins: function() {
-    return ['BTC', 'ETH', 'LTC', 'XRP', 'BCH', 'EOS', 'XLM', 'ADA', 'MIOTA', 'TRX', 'NEO', 'XMR', 'ZEC', 'DASH', 'ETC'];
-
-  },
   recommendedCoins: function(req, res) {
-    var recommend = this.getRecommendedCoins();
+    var arr = [];
+    for (var i = 0; i < COINS.length; i++) {
+      arr.push({
+        name: COIN_NAMES[i],
+        symbol: COINS[i]
+      })
+    }
+    res.json(arr);
+  },
+  recommendedCoinsExtra: function(req, res) {
+    var recommend = COINS;
     requestCrypto('https://www.cryptocompare.com/api/data/coinlist/', function(body) {
       var data = JSON.parse(body).Data;
       var arr = [];
@@ -53,7 +68,8 @@ module.exports = {
           arr.push({
             name: val.CoinName,
             symbol: val.Symbol,
-            id: val.Id
+            id: val.Id,
+            url: val.Url
           })
         }
       });
@@ -71,13 +87,37 @@ module.exports = {
             name: val.CoinName,
             symbol: val.Symbol,
             id: val.Id,
-            order: val.SortOrder
+            order: val.SortOrder,
+            url: val.Url
           })
         }
       })
       arr.sort((a, b) => +a.order - +b.order);
       res.json(arr);
+    }) 
+  },
+  marketDisplay: function(req, res) {
+    var coins = req.body.toString();
+    var url = CRYPTO_URL + 'pricemultifull?fsyms=' + coins + '&tsyms=USD';
+    requestCrypto(url, function(body) {
+      var arr = [];
+      var display = JSON.parse(body).DISPLAY;
+      var keys = Object.keys(display);
+      keys.forEach(function(key) {
+        var elem = display[key].USD; 
+        arr.push({
+          symbol: elem.FROMSYMBOL,
+          price: elem.PRICE,
+          change: elem.CHANGEPCT24HOUR + '%',
+          open: elem.OPENDAY,
+          high: elem.HIGHDAY,
+          low: elem.LOWDAY,
+          volume: elem.VOLUME24HOURTO,
+          supply: elem.SUPPLY,
+          cap: elem.MKTCAP
+        })
+      })
+      res.json(arr);
     })
-    
   }
  }
