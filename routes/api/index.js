@@ -1,6 +1,8 @@
 var router = require('express').Router();
 var cryptoRoutes = require('./cryptoRoutes');
+var walletRoutes = require('./walletRoutes');
 
-router.use('/crypto', cryptoRoutes);
+router.use(cryptoRoutes);
+router.use(walletRoutes);
 
 module.exports = router;

@@ -2,12 +2,18 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var walletSchema = new Schema({
-  coins: [{
-    symbol: String,
-    amount: Number,
+    symbol: {
+      type: String,
+      unique: true,
+      required: true
+    },
+    amount: {
+      type: Number,
+      min: 0,
+      required: true
+    },
     timestamp: Number
-  }]
 })
 
-var wallet = mongoose.model('wallet', walletSchema);
-module.exports = wallet;
+var Wallet = mongoose.model('Wallet', walletSchema);
+module.exports = Wallet;
