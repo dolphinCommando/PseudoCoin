@@ -1,4 +1,36 @@
 .header-nav>ul>li.header-notifs .dropdown-notifs li {
+    position: fixed;
+    top: 3.5rem;
+    display: inline-block;
+    z-index: 11;
+    width: 100vw;
+    background-color: #fff;
+    border-top: 1px solid #ced4e2;
+    box-shadow: 1px 2px 5px 0 rgba(56,56,56,.3);
+    transition: visibility .5s,opacity .5s,right .5s,left .5s,width 0ms;
+    transition-timing-function: cubic-bezier(.68,-.55,.265,1.55);
+}
+
+.header-nav>ul>li.header-notifs.active {
+    visibility: visible;
+    opacity: 1;
+    right: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.header-nav>ul>li.header-notifs .dropdown-notifs .dropdown-notifs-title {
+    position: relative;
+}
+
+.header-nav>ul>li.header-notifs .dropdown-notifs li {
     display: block;
     width: 100%;
     text-align: left;
