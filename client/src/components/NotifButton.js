@@ -26,7 +26,7 @@ class NotifButton extends React.Component {
         if (this.state.unreadNotifications) {
             return (
             <div>
-              <button onClick={this.handleClick}>You have notifications!</button>
+              <button onClick={this.handleClick}>You've got notifications!</button>
               {this.state.dropdown && <Notifications onMarkedNotificationsRead={this.handleAllRead} />}
             </div>)
         } else {
