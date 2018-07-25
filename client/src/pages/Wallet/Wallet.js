@@ -1,9 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './NavExpand.css';
-import './Exchange.css';
+import './Wallet.css';
 
-class Exchange extends React.Component {
+class Wallet extends React.Component {
     constructor(props) {
       super(props);
     }
