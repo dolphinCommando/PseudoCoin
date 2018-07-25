@@ -12,10 +12,9 @@ const NavExpand = props => {
             <button className="icon"><i className="glyphicon glyphicon-search">&#xe003;</i></button>
         /* </div> */
           <a href="/">Home</a>
-          <a href="/exchange">Exchange</a>
+          <a href="/wallet">Wallet</a>
           <a href="/invest">Invest</a>
           <a href="/notifications">Notifications</a>
-          <a href="/manage">Manage</a>
       </div>
     );
 }
