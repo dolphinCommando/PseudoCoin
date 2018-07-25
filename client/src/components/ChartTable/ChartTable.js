@@ -2,7 +2,7 @@ import React from 'react';
 //import mockData from '../../data/mockData';
 import LineChart from '../LineChart';
 import Table from '../Table';
-import API from '../../util/API';
+import API from '../../util/api';
 import moment from 'moment';
 
 class ChartTable extends React.Component {
