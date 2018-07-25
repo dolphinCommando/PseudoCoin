@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import NavExpand from './components/NavExpand';
 import NotifButton from './components/NotifButton';
 import Home from './pages/Home';
+//import Wallet from './pages/Wallet';
 import './App.css';
 
 class App extends Component {
@@ -19,7 +20,8 @@ class App extends Component {
           <NotifButton />
         </header>
         <p className="App-intro jumbotron">
-          Welcome to PseudoCoin! Click on the "Current Amount" or "Investments" section, or click on the side navigation bar for "Subscriptions", "Manage", "User Profile", or "Notifications".
+          Welcome to PseudoCoin! Click on the coin name below to see the most recent performance.
+          <br>Use side bar for subscriptions, manage, user profile, and notifications
         </p>
         <NavExpand />
         <Router>
@@ -27,7 +29,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
-              {/* <Route exact path="/exchange" component={Exchange} />
+              {/* <Route exact path="/wallet" component={Wallet} />
               <Route exact path="/invest" component={Invest} />
               <Route exact path="/notifications" component={Notifications} /> */}
             </Switch>
