@@ -16,11 +16,11 @@ export default {
   getDollars: function() {
     return axios.get('/api/wallet');
   },
-  addDollars: function(cash) {
-    return axios.put('/api/wallet/add')
+  tradeForDollars: function(cash) {
+    return axios.put('/api/wallet/trade')
   },
-  subtractDollars: function(cash) {
-    return axios.put('/api/wallet/subtract')
+  spendDollars: function(cash) {
+    return axios.put('/api/wallet/spend')
   },
   getCryptoData: function() {
     return axios.get('/api/crypto');

@@ -146,15 +146,21 @@ module.exports = {
       res.json(price);
     })
   },
-  coinList: function(req, res) {
+  findCoin: function(req, res) {
     requestCrypto('https://www.cryptocompare.com/api/data/coinlist/', function(body) {
-      var arr = [];
+      var symbolArr = [];
+      var nameArr = [];
       var data = JSON.parse(body).Data;
       Object.keys(data).forEach(function(key) {
-        arr.push(data[key].FullName)
+        symbolArr.push(data[key].Symbol)
+        nameArr.push(data[key].Name)
       })
-      arr.sort();
-      res.json(arr);
+      if (symbolArr.filter(elem => elem === req.body) || nameArr.filter(elem => elem === req.body)) {
+        res.json(req.body)
+      }
+      else {
+        res.sendStatus(404).json('Coin not found');
+      }
     })
   },
   priceFromTo: function(req, res) {

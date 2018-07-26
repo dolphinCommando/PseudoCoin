@@ -16,14 +16,6 @@ const Bank = props => {
         <h3>Cash Out</h3>
         <p>$ {props.cash}</p>
       </div>
-      <div>
-        <form>
-          <label for="add-money">Add money to your account</label>
-          <input id="add-money" onChange={props.onChange} />
-          <small>{props.errmessage}</small>
-          <button type="submit" onClick={props.onClick}>Deposit</button>
-        </form>
-      </div>
     </div>
   )
 }
