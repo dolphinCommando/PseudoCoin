@@ -13,7 +13,10 @@ const Investments = props => {
   });
   return (
     <div>
-      {data}
+      <h2>Your Investments</h2>
+      <div>
+        {data}
+      </div>
     </div>
   )
 }
