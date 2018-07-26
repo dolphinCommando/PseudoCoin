@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var walletController = require('../controllers/walletController');
+var walletController = require('../../controllers/walletController');
 
 
 module.exports = router;

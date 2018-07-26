@@ -7,13 +7,13 @@ const NavExpand = props => {
     return (
       <div id="mySidenav" className="sidenav">
         <a href="javascript:void(0)" className="closebtn" onClick="closeNav()">&times;</a>
-        /* <div className="searchBar"> */
+         <div className="searchBar"> 
             <input aria-invalid="false" aria-required="false" className="searchBar" placeholder="Search" type="text" aria-label="Search" value="" />
             <button className="icon"><i className="glyphicon glyphicon-search">&#xe003;</i></button>
-        /* </div> */
+         </div> 
           <a href="/">Home</a>
+          <a href="/login">Login</a>
           <a href="/wallet">Wallet</a>
-          <a href="/invest">Invest</a>
           <a href="/notifications">Notifications</a>
       </div>
     );

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import logo from './logo.svg';
-import Login from './pages/Login';
 import NavExpand from './components/NavExpand';
 import NotifButton from './components/NotifButton';
 import Home from './pages/Home';
-//import Wallet from './pages/Wallet';
+import Login from './pages/Login';
+import Wallet from './pages/Wallet';
+import Notifications from './pages/Notifications';
 import './App.css';
 
 class App extends Component {
@@ -21,7 +22,7 @@ class App extends Component {
         </header>
         <p className="App-intro jumbotron">
           Welcome to PseudoCoin! Click on the coin name below to see the most recent performance.
-          <br>Use side bar for subscriptions, manage, user profile, and notifications
+          <br />Use side bar for subscriptions, manage, user profile, and notifications
         </p>
         <NavExpand />
         <Router>
@@ -29,9 +30,8 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
-              {/* <Route exact path="/wallet" component={Wallet} />
-              <Route exact path="/invest" component={Invest} />
-              <Route exact path="/notifications" component={Notifications} /> */}
+              <Route exact path="/wallet" component={Wallet} />
+              <Route exact path="/notifications" component={Notifications} />
             </Switch>
           </div>
         </Router>
