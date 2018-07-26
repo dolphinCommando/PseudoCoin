@@ -3,13 +3,13 @@ var crypto = require('../../controllers/cryptoController');
 /*
   /api/crypto
 */
-router.route('/').get(crypto.recommendedCoins)
+router.route('/crypto').get(crypto.recommendedCoins)
 
-router.route('/top').get(crypto.topCoins)
+router.route('/crypto/top').get(crypto.topCoins)
 
-router.route('/market').post(crypto.marketDisplay)
+router.route('/crypto/market').post(crypto.marketDisplay)
 
-router.route('/history/:sym').get(crypto.coinHistory)
+router.route('/crypto/history/:sym').get(crypto.coinHistory)
 
 module.exports = router;
 

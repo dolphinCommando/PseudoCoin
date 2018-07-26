@@ -137,6 +137,35 @@ module.exports = {
       //console.log(arr);
       res.json(arr)
     })
-
+  },
+  priceTimestamp: function(req, res) {
+    var url = `${CRYPTO_URL}pricehistorical?fsym=${req.body.from}`
+    url+= `&tsyms=${req.body.to}&ts=${req.body.ts}`
+    requestCrypto(url, function(data) {
+      var price = JSON.parse(data)[req.body.from][req.body.to];
+      res.json(price);
+    })
+  },
+  coinList: function(req, res) {
+    requestCrypto('https://www.cryptocompare.com/api/data/coinlist/', function(body) {
+      var arr = [];
+      var data = JSON.parse(body).Data;
+      Object.keys(data).forEach(function(key) {
+        arr.push(data[key].FullName)
+      })
+      arr.sort();
+      res.json(arr);
+    })
+  },
+  priceFromTo: function(req, res) {
+    var from = req.body.from;
+    var to = (req.body.to).String();
+    var url = CRYPTO_URL + 'price?fsym=' + from + '&tsyms=' + to;
+    requestCrypto(url, function(body) {
+      res.json(Object.values(JSON.parse(body)))
+    })
   }
  }
+
+
+

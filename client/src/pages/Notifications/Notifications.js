@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-//import logo from './logo.svg';
+import React from 'react';
 import './Notifications.css';
 
 class Notifications extends React.Component {
