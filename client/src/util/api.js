@@ -13,6 +13,15 @@ export default {
   updateTrade: function(id) {
     return axios.put('/api/coins/:id');
   },
+  getDollars: function() {
+    return axios.get('/api/wallet');
+  },
+  addDollars: function(cash) {
+    return axios.put('/api/wallet/add')
+  },
+  subtractDollars: function(cash) {
+    return axios.put('/api/wallet/subtract')
+  },
   getCryptoData: function() {
     return axios.get('/api/crypto');
   },
