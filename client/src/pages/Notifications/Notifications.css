@@ -1,3 +1,8 @@
+.header-nav-dropdown {
+    z-index: 1;
+    
+}
+
 .header-nav>ul>li.header-notifs .dropdown-notifs li {
     position: fixed;
     top: 3.5rem;
