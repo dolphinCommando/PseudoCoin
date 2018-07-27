@@ -21,7 +21,7 @@ class App extends Component {
           </h1>  
         </header>
         <p className="App-intro jumbotron">
-          Welcome to PseudoCoin! Click on the coin name below to see the most recent performance.
+          Welcome to PseudoCoin! Click on a coin name below to see its most recent performance.
           <br />Use side bar for subscriptions, manage, user profile, and notifications
         </p>
         <NavExpand />
