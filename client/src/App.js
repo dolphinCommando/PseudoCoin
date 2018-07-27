@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import NavExpand from './components/NavExpand';
+import Sidebar from './components/Sidebar';
 import NotifButton from './components/NotifButton';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -13,12 +14,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Sidebar />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">PseudoCoin
-            <i className="fa fa-dollar">&#xf155;</i>
-            <NotifButton />
-            <NavExpand />
+            <i className="fa fa-dollar">&#xf155;</i>  
           </h1>  
         </header>
         <p className="App-intro jumbotron">

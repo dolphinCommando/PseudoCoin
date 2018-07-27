@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.css';
 import ChartTable from '../../components/ChartTable';
+import Sidebar from '../../components/Sidebar';
 
 class Home extends React.Component {
   constructor(props) {
