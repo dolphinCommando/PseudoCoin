@@ -18,13 +18,13 @@ class App extends Component {
           <h1 className="App-title">PseudoCoin
             <i className="fa fa-dollar">&#xf155;</i>
             <NotifButton />
+            <NavExpand />
           </h1>  
         </header>
         <p className="App-intro jumbotron">
           Welcome to PseudoCoin! Click on the coin name below to see the most recent performance.
           <br />Use side bar for subscriptions, manage, user profile, and notifications
         </p>
-        <NavExpand />
         <Router>
           <div>
             <Switch>
