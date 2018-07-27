@@ -2,7 +2,14 @@ import React from 'react';
 import './Invest.css';
 
 const Invest = props => {
-  const coinOptions = props.coins.map(coin => <option>{coin}</option>);
+  let coinOptions
+  if(props.options) {
+    coinOptions = props.options.map(coin => <option>{coin}</option>)
+  }
+  else {
+    coinOptions = <option>You do not have coins yet</option>
+  }
+
   return (
     <div>
       <ul className="nav nav-tabs" id="myTab" role="tablist">

@@ -1,6 +1,6 @@
 var db = require('../models');
 var mongoose = require('mongoose');
-import moment from 'moment';
+var moment = require('moment');
 
 module.exports = {
   getCoins: function(req, res) {
