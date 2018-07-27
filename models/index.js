@@ -1,7 +1,9 @@
-var Wallet = require('./wallet');
+var Deposit = require('./deposit');
+var Cash = require('./cash');
 var Coin = require('./coin');
 
 module.exports = {
-  Wallet: Wallet,
-  Coin: Coin
+  Deposit: Deposit,
+  Cash: Cash,
+  Coin: Coin,
 }

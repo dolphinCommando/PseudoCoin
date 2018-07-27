@@ -1,5 +1,6 @@
 var db = require('../models');
 var mongoose = require('mongoose');
+import moment from 'moment';
 
 module.exports = {
   getCoins: function(req, res) {
@@ -27,7 +28,7 @@ module.exports = {
       .create({
         symbol: req.body.symbol,
         amount: req.body.amount,
-        timestamp: req.body.timestamp
+        timestamp: moment.utc()
       })
       .then(dbData => {
         res.json(dbData)
@@ -60,8 +61,8 @@ module.exports = {
         res.sendStatus(404).json(err)
       })
   },
-  getWallet: function(req, res) {
-    db.Wallet
+  getCash: function(req, res) {
+    db.Cash
       .find({})
       .then(dbData => {
         res.json(dbData);
@@ -71,28 +72,33 @@ module.exports = {
       })
   },
   addCash: function(req, res) {
-    if (req.path.includes('in')) {
-      db.Wallet
-        .update({}, {$set: {cashIn: +req.body}})
-        .then(dbData => {
-          res.json(dbData);
-        })
-        .catch(err => {
-          res.sendStatus(500).json(err);
-        })        
-    }
-    else if (req.path.includes('out')) {
-      db.Wallet
-        .update({}, {$set: {cashOut: +req.body}})
-        .then(dbData => {
-          res.json(dbData);
-        })
-        .catch(err => {
-          res.sendStatus(500).json(err);
-        })                  
-    }
-    else {
-      res.sendStatus(418).json('Incorrect path');
-    }
-  }      
+    db.Cash
+      .create({amount: req.body.amount, timestamp: moment.utc()})
+      .then(dbData => {
+        res.json(dbData);
+      })
+      .catch(err => {
+        res.sendStatus(500).json(err);
+      })         
+  },
+  getDeposit: function(req, res) {
+    db.Deposit
+      .find({})
+      .then(dbData => {
+        res.json(dbData);
+      })
+      .catch(err => {
+        res.sendStatus(404).json(err)
+      })
+  },
+  addDeposit: function(req, res) {
+    db.Deposit
+      .create({amount: req.body.amount, timestamp: moment.utc()})
+      .then(dbData => {
+        res.json(dbData);
+      })
+      .catch(err => {
+        res.sendStatus(500).json(err);
+      })         
+  }              
 }

@@ -12,7 +12,10 @@ var coinSchema = new Schema({
       min: 0,
       required: true
     },
-    timestamp: Number
+    timestamp: {
+      type: Number,
+      required: true
+    }
 })
 
 var Coin = mongoose.model('Coin', coinSchema);

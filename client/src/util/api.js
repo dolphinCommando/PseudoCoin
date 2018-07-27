@@ -1,26 +1,29 @@
 import axios from 'axios';
 
 export default {
-  getTrades: function() {
+  getCoins: function() {
     return axios.get('/api/coins');
   },
-  findTrade: function(id) {
+  findCoin: function(id) {
     return axios.get('/api/coins/:id');
   },
-  deleteTrade: function(id) {
+  deleteCoin: function(id) {
     return axios.delete('/api/coins/:id');
   },
-  updateTrade: function(id) {
+  updateCoin: function(id) {
     return axios.put('/api/coins/:id');
   },
-  getDollars: function() {
-    return axios.get('/api/wallet');
+  getCash: function() {
+    return axios.get('/api/cash');
   },
-  tradeForDollars: function(cash) {
-    return axios.put('/api/wallet/trade')
+  addCash: function(cash) {
+    return axios.post('/api/cash')
   },
-  spendDollars: function(cash) {
-    return axios.put('/api/wallet/spend')
+  getDeposit: function() {
+    return axios.get('/api/deposit');
+  },
+  addDeposit: function(deposit) {
+    return axios.post('/api/deposit')
   },
   getCryptoData: function() {
     return axios.get('/api/crypto');

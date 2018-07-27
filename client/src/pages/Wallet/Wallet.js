@@ -1,8 +1,7 @@
 import React from 'react';
 import './Wallet.css';
-import Investments from '../../components/Investments';
 import Bank from '../../components/Bank';
-import SearchBar from '../../components/SearchBar';
+import Invest from '../../components/Invest';
 
 class Wallet extends React.Component {
     constructor(props) {
@@ -23,9 +22,9 @@ class Wallet extends React.Component {
           <Bank 
             dollars={this.state.dollars}
             cash={this.state.cash} 
-            holdings={this.state.holdings} />
-          <Investments shares={this.state.shares} />
-          <SearchBar />
+            holdings={this.state.holdings} 
+            shares={this.state.shares} />
+          <Invest />
         </div>
       )
     }  
