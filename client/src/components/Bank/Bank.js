@@ -31,10 +31,6 @@ const Bank = props => {
         <p>$ {props.dollars}</p>
       </div>
       <div>
-        <h3>Cash Out</h3>
-        <p>$ {props.cash}</p>
-      </div>
-      <div>
       <h2>Your Investments</h2>
         <div>
           {data}
