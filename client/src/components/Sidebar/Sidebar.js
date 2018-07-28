@@ -15,10 +15,10 @@ return (
                 <a href="/">Home</a>
             </li>
             <li>
-                <a href="/login">Login</a>
+                <a href="/wallet">Wallet</a>
             </li>
             <li>
-                <a href="/wallet">Wallet</a>
+                <a href="/trade">Trade</a>
             </li>
             <li>
                 <a href="/notifications">Notifications</a>
