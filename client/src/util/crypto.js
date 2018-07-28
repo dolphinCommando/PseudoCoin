@@ -9,6 +9,9 @@ const COIN_NAMES = [
   'Monero', 'Zcash', 'Dash', 'Ethereum Classic', 
   'Tether', 'EOS', 'Stellar', 'Cardano', 'TRON', 'NEO'
   ];
+
+// Need to convert axios callbacks to promises
+
 export default {
   currentPrice: function(sym, cb) {
     if (!COINS.includes(sym)) {
