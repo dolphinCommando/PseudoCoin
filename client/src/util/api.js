@@ -24,14 +24,5 @@ export default {
   },
   addDeposit: function(deposit) {
     return axios.post('/api/deposit')
-  },
-  getCryptoData: function() {
-    return axios.get('/api/crypto');
-  },
-  getCryptoMarket: function(coinarr) {
-    return axios.post('/api/crypto/market', coinarr)
-  },
-  getCryptoHistoryHour: function(symbol) {
-    return axios.get('/api/crypto/history/' + symbol)
   }
 }

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var coinSchema = new Schema({
+var coinsSchema = new Schema({
     symbol: {
       type: String,
       unique: true,
@@ -18,5 +18,5 @@ var coinSchema = new Schema({
     }
 })
 
-var Coin = mongoose.model('Coin', coinSchema);
-module.exports = Coin;
+var Coins = mongoose.model('Coins', coinsSchema);
+module.exports = Coins;

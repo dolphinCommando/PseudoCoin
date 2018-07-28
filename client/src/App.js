@@ -6,6 +6,7 @@ import NotifButton from './components/NotifButton';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Wallet from './pages/Wallet';
+import Trade from './pages/Trade';
 import Notifications from './pages/Notifications';
 import './App.css';
 
@@ -31,6 +32,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/wallet" component={Wallet} />
+              <Route exact path="/trade" component={Trade} />
               <Route exact path="/notifications" component={Notifications} />
             </Switch>
           </div>

@@ -2,9 +2,9 @@ import React from 'react';
 import './Invest.css';
 
 const Invest = props => {
-  let coinOptions
+  let coinOptions;
   if(props.options) {
-    coinOptions = props.options.map(coin => <option>{coin}</option>)
+    coinOptions = props.options.map(coin => <option>{coin.symbol}</option>)
   }
   else {
     coinOptions = <option>You do not have coins yet</option>

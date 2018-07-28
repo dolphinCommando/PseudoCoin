@@ -4,6 +4,7 @@ import './Bank.css';
 const Bank = props => {
   const shares = props.shares;
   let data = [];
+  if (shares) {
   shares.forEach(function(coin) {
     data.push(
       <div>
@@ -11,6 +12,10 @@ const Bank = props => {
       </div>
     );
   });
+  }
+  else {
+    data.push(<div><p>No investments yet.</p></div>);
+  }
   return (
     <div>
       <div>
