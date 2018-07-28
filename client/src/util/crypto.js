@@ -9,7 +9,6 @@ const COIN_NAMES = [
   'Monero', 'Zcash', 'Dash', 'Ethereum Classic', 
   'Tether', 'EOS', 'Stellar', 'Cardano', 'TRON', 'NEO'
   ];
-
 export default {
   currentPrice: function(sym, cb) {
     if (!COINS.includes(sym)) {
@@ -34,6 +33,20 @@ export default {
       })
       cb(arr);
     })
+  },
+  sumCryptos: function(myArr, cb) {
+    var fsyms = myArr.toString();
+    var url = CRYPTO_URL + 'pricemulti?fsyms=' + fsyms + '&tsyms=USD';
+    var sum = 0;
+    axios.request(url).then(body => {
+      var matrix = body.data;
+      //console.log('matrix: ' + JSON.stringify(matrix))
+      Object.keys(matrix).forEach(function(coin) {
+        sum += +matrix[coin].USD
+      })
+      //console.log(sum)
+      cb(sum);
+    }).catch(err => cb(err));
   },
   recommendedCoins: function() {
     var arr = [];
@@ -109,9 +122,9 @@ export default {
       cb(arr);
     }).catch(err => {console.log(err)})
   },
-  coinHistory: function(sym, cb) {
+  coinHistory: function(mySym, cb) {
     //var tags = ['histominute', 'histohour', 'histoday'];
-    var sym = (sym) ? sym : 'BTC';
+    var sym = (mySym) ? mySym : 'BTC';
     var url = CRYPTO_URL + 'histohour' + '?fsym=' + sym + '&tsym=USD&limit=30&aggregate=3';
     var arr = [];
     axios.request(url).then(body => {

@@ -14,15 +14,15 @@ export default {
     return axios.put('/api/coins/:id');
   },
   getCash: function() {
-    return axios.get('/api/cash');
+    return axios.get('/api/wallet/cash');
   },
   addCash: function(cash) {
-    return axios.post('/api/cash')
+    return axios.post('/api/wallet/cash')
   },
   getDeposit: function() {
-    return axios.get('/api/deposit');
+    return axios.get('/api/wallet/deposit');
   },
   addDeposit: function(deposit) {
-    return axios.post('/api/deposit')
+    return axios.post('/api/wallet/deposit')
   }
 }

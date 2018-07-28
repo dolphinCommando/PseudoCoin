@@ -20,7 +20,7 @@ const Bank = props => {
     <div>
       <div>
         <h2>Net Worth</h2>
-        <p>$ {props.worth}</p>
+        <p>{props.worth}%</p>
       </div>
       <div>
         <h3>Total Value of Your Cryptocurrencies</h3>

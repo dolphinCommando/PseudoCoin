@@ -17,7 +17,7 @@ module.exports = {
         res.sendStatus(404).json(err)
       })
   },
-  findCoins: function(req, res) {
+  findCoin: function(req, res) {
     db.Coins
     .find({_id: mongoose.Types.ObjectId(req.params.id)})
     .then(dbData => {
@@ -27,7 +27,7 @@ module.exports = {
       res.sendStatus(404).json(err)
     })
   },
-  createCoins: function(req, res) {
+  createCoin: function(req, res) {
     db.Coins
       .create({
         symbol: req.body.symbol,
@@ -41,7 +41,7 @@ module.exports = {
         res.sendStatus(500).json(err)
       })
   },
-  updateCoins: function(req, res) {
+  updateCoin: function(req, res) {
     db.Coins
       .where({symbol: req.params.symbol})
       .update({$set: {
@@ -55,7 +55,7 @@ module.exports = {
         res.sendStatus(404).json(err)
       })
   },
-  deleteCoins: function(req, res) {
+  deleteCoin: function(req, res) {
     db.Coins
       .deleteOne({symbol: req.params.symbol})
       .then(dbData => {
