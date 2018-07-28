@@ -19,9 +19,6 @@ const Invest = props => {
         <li className="nav-item">
           <a className="nav-link" id="exchange-tab" data-toggle="tab" href="#exchange" role="tab" aria-controls="exchange" aria-selected="false">Exchange</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" id="sell-tab" data-toggle="tab" href="#sell"      role="tab" aria-controls="sell" aria-selected="false">Sell</a>
-        </li>
       </ul>
       <div className="tab-content" id="myTabContent">
         <div className="tab-pane fade show active" id="buy" role="tabpanel"      aria-labelledby="buy-tab">
@@ -57,23 +54,6 @@ const Invest = props => {
             <button type="submit">Submit</button>
           </form>
           <p>Exchange rate: </p>
-        </div>
-        <div className="tab-pane fade" id="sell" role="tabpanel"       aria-labelledby="sell-tab">
-          <h4>Sell Cryptocurrency</h4>
-          <p>Cash in a coin at a virtual exchange.</p>
-          <form>
-            <div class="form-group">
-              <label for="coinSelectSell">Select a coin you own.</label>
-              <select multiple class="form-control" id="coinSelectSell">
-                {coinOptions}
-              </select>
-            </div>
-            <div className="form-group">
-              <label for="coinAmount">Coin Amount</label>
-              <input type="text" className="form-control" id="usdCurrency" aria-describedby="coinAmount" placeholder="Enter amount of coin" />
-            </div>
-            <button type="submit">Submit</button>
-          </form>
         </div>
       </div>            
     </div>

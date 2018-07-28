@@ -10,8 +10,7 @@ class Wallet extends React.Component {
       this.state = {
         shares: [],
         value: 0,
-        dollars: 0,
-        cash: 0
+        dollars: 0
       };
       this.calculateWorth = this.calculateWorth.bind(this)
     }
@@ -56,7 +55,6 @@ class Wallet extends React.Component {
             dollars={this.state.dollars}
             holdings={this.state.value}
             worth={this.calculateWorth()}
-            cash={this.state.cash}
           />
         </div>
       )
