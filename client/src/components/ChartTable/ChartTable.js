@@ -1,5 +1,4 @@
 import React from 'react';
-//import mockData from '../../data/mockData';
 import LineChart from '../LineChart';
 import Table from '../Table';
 import crypto from '../../util/crypto';
