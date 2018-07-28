@@ -1,7 +1,7 @@
 import React from 'react';
 import './Wallet.css';
 import Bank from '../../components/Bank';
-import API from '../../util/API';
+import API from '../../util/api';
 import crypto from '../../util/crypto';
 
 class Wallet extends React.Component {
