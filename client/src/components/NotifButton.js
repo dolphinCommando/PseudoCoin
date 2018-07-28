@@ -2,11 +2,21 @@ import React from 'react';
 import Notifications from '../pages/Notifications';
 
 class NotifButton extends React.Component {
-    constructor(props) {
+  constructor(props) {
       super(props);
       this.state = {
         unreadNotifications: false,
-        dropdown: false
+        dropdown: false,
+        notifications: [
+        {
+          message: "Your stock went up!",
+          unread: true
+        },
+        {
+          message: "Your Bitcoin stock decreased today.",
+          unread: true
+        }
+      ]
       }
       this.handleClick = this.handleClick.bind(this)
       this.handleAllRead = this.handleAllRead.bind(this)
@@ -18,20 +28,19 @@ class NotifButton extends React.Component {
     }
     handleAllRead () {
       this.setState({
-        unreadNotifications: !this.state.unreadNotifications, 
-        dropdown: false
+        unreadNotifications: false, 
+        dropdown: false,
+        notifications: []
        })
     }
     render() {
-        if (this.state.unreadNotifications) {
-            return (
-            <div>
-              <button onClick={this.handleClick}>You've got notifications!</button>
-              {this.state.dropdown && <Notifications onMarkedNotificationsRead={this.handleAllRead} />}
-            </div>)
-        } else {
-            return (<button><i className="material-icons">&#xe7f4;</i></button>)
-        }
+      return (
+        <span>
+          <button onClick={this.handleClick}>
+            {this.state.unreadNotifications ? "You've got notifications!":<i className="material-icons">&#xe7f4;</i>}
+          </button>
+          {this.state.dropdown && <Notifications onMarkedNotificationsRead={this.handleAllRead} unreadNotifs={this.state.notifications}/>}
+        </span>)
     }
 }
 export default NotifButton;      
