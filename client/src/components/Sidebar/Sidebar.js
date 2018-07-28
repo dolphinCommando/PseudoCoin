@@ -7,10 +7,10 @@ return (
     <nav id="sidebar">
         <span id="dismiss" onClick={() => document.getElementById('sidebar').classList.toggle('active')}>&#x2715;</span>
         <div className="sidebar-header">
-            <h3>Bootstrap Sidebar</h3>
+            <h3>PseudoCoin</h3>
         </div>
         <ul className="list-unstyled components">
-            <p>Dummy Heading</p>
+            <p>Hello!</p>
             <li>
                 <a href="/">Home</a>
             </li>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import logo from './logo.svg';
-import NavExpand from './components/NavExpand';
+//import NavExpand from './components/NavExpand';
 import Sidebar from './components/Sidebar';
 import NotifButton from './components/NotifButton';
 import Home from './pages/Home';
@@ -15,6 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <Sidebar />
+        <NotifButton />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">PseudoCoin
