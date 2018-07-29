@@ -52,25 +52,6 @@ const depositSeed = [
     timestamp: moment.utc()
   }
 ];
-/*
-cashSeed = [
-  { 
-    symbol: 'BTC',
-    amount: 15.00,
-    timestamp: moment.utc()
-  },
-  {
-    symbol: 'BTC',
-    amount: 40.00,
-    timestamp: moment.utc()
-  },
-  {
-    symbol: 'BTC',
-    amount: 25.00,
-    timestamp: moment.utc()
-  }
-]
-*/
 
 db.Coins
   .remove({})

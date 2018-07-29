@@ -19,7 +19,7 @@ const Bank = props => {
   return (
     <div>
       <div>
-        <h2>Net Worth</h2>
+        <h2>Return on Investment</h2>
         <p>{props.worth}%</p>
       </div>
       <div>

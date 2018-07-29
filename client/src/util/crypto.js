@@ -56,18 +56,19 @@ export default {
       cb(arr);
     })
   },
-  sumCryptos: function(myArr, cb) {
-    var fsyms = myArr.toString();
+  sumCryptos: function(dbObj, cb) {
+    var fsyms = dbObj.map(elem => elem.symbol).toString();
     var url = CRYPTO_URL + 'pricemulti?fsyms=' + fsyms + '&tsyms=USD';
     var sum = 0;
     axios.request(url).then(body => {
       var matrix = body.data;
-      //console.log('matrix: ' + JSON.stringify(matrix))
-      Object.keys(matrix).forEach(function(coin) {
-        sum += +matrix[coin].USD
-      })
+      console.log('matrix: ' + JSON.stringify(body.data))
+      var matrix = Object.keys(body.data);
+      for (var i = 0; i < matrix.length; i++) {
+        sum += +dbObj[i].amount * +body.data[matrix[i]].USD
+      }
       //console.log(sum)
-      cb(sum);
+      cb(sum); 
     }).catch(err => cb(err));
   },
   recommendedCoins: function() {

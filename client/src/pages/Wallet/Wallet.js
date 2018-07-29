@@ -23,8 +23,8 @@ class Wallet extends React.Component {
     loadCoins = () => {
       API.getCoins()
       .then(coinData => {
-        //console.log(coinData);
-        crypto.sumCryptos(coinData.data.map(coin => coin.symbol), (usd) => {
+        console.log(coinData.data);
+        crypto.sumCryptos(coinData.data, (usd) => {
           //console.log(usd)
           this.setState({
             shares: coinData.data,
