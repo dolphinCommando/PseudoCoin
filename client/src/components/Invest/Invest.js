@@ -48,7 +48,11 @@ const Invest = props => {
               </select>
             </div>
             <div className="form-group">
-              <label for="currency">Currency Name</label>
+              <label for="usdCurrency">Amount to Trade</label>
+              <input type="text" className="form-control" id="coinCurrency" aria-describedby="coinCurrency" />
+            </div>
+            <div className="form-group">
+              <label for="currency">Trade For: </label>
               <input type="text" className="form-control" id="currency" aria-describedby="currencyInput" placeholder="Enter symbol or name" />
             </div>
             <button type="submit">Submit</button>

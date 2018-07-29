@@ -187,12 +187,23 @@ export default {
       }
     })
   },
-  priceFromTo: function(body, cb) {
-    var from = body.from;
-    var to = (body.to).String();
-    var url = CRYPTO_URL + 'price?fsym=' + from + '&tsyms=' + to;
-    axios.request(url, function(body) {
-      cb(Object.values(body.data));
-    })
+  amountFromTo: function(body, cb) {
+    if (body.from && body.amount && body.to) {
+      this.isCoin(body.to, yes => {
+        if (yes) {
+          var url = CRYPTO_URL + 'price?fsym=' + body.from + '&tsyms=' + (body.to).String();
+          axios.request(url, function(response) {
+            var numCoins = Object.values(response.data);
+            cb(+body.amount * +numCoins)
+          })
+        }
+        else {
+          cb(new Error('Coin not found'))
+        }
+      })
+    }
+    else {
+      cb(new Error('Missing info'))
+    }  
   }
 }
