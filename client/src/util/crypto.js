@@ -25,23 +25,17 @@ export default {
     }
   },
   dollarsToCrypto: function(sym, amount, cb) {
-    this.isCoin(sym, res => {
-      if (!res) {
-        cb(new Error('Cryptocurrency not found'))
-      }
-      else {
-        if (Number.isNaN(+amount) || +amount<=0) {
-          cb(new Error('Please enter a numeric amount greater than 0.'))
-        }
-        else {
-          const url = CRYPTO_URL + 'price?fsym=USD&tsyms=' + sym;
-          axios.request(url).then(body => {
-            var coins = +body.data[sym] * +amount;
-            cb(coins);
-          }).catch(err => cb(new Error('Could not convert.')))
-        }
-      }
-    })
+    if (Number.isNaN(+amount) || +amount<=0) {
+      cb(new Error('Please enter a numeric amount greater than 0.'))
+    }
+    else {
+      const url = CRYPTO_URL + 'price?fsym=USD&tsyms=' + sym;
+      axios.request(url).then(body => {
+        var coins = +body.data[sym] * +amount;
+        cb(coins);
+      }).catch(err => cb(err))
+    }
+      
   },
   currentAvailablePrices: function(cb) {
     var coins = COINS;
@@ -171,7 +165,9 @@ export default {
     })
   },
   isCoin: function(coin, cb) {
-    axios.request('https://www.cryptocompare.com/api/data/coinlist/', function(body) {
+    axios.request({
+      url: 'https://www.cryptocompare.com/api/data/coinlist/',
+    }).then(body => {
       var symbolArr = [];
       var nameArr = [];
       var data = body.data.Data;
@@ -188,22 +184,11 @@ export default {
     })
   },
   amountFromTo: function(body, cb) {
-    if (body.from && body.amount && body.to) {
-      this.isCoin(body.to, yes => {
-        if (yes) {
-          var url = CRYPTO_URL + 'price?fsym=' + body.from + '&tsyms=' + (body.to).String();
-          axios.request(url, function(response) {
-            var numCoins = Object.values(response.data);
-            cb(+body.amount * +numCoins)
-          })
-        }
-        else {
-          cb(new Error('Coin not found'))
-        }
-      })
-    }
-    else {
-      cb(new Error('Missing info'))
-    }  
+    var url = CRYPTO_URL + 'price?fsym=' + body.from + '&tsyms='(body.to).String();
+    axios.request(url).then(response => {
+      var numCoins = Object.values(response.data);
+      cb(+body.amount * +numCoins)
+    }).catch(err => cb(err))
+
   }
 }

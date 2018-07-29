@@ -19,7 +19,7 @@ export default {
   getDeposit: function() {
     return axios.get('/api/wallet');
   },
-  addDeposit: function(deposit) {
-    return axios.post('/api/wallet', deposit)
+  addDeposit: function(body) {
+    return axios.post('/api/wallet', body)
   }
 }

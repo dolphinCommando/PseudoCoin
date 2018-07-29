@@ -10,7 +10,11 @@ class Trade extends React.Component {
     buyCoin: '',
     exCoinFrom: '',
     exCoinTo: '',
-    exCoinAmount: ''
+    exCoinAmount: '',
+    options: []
+  }
+  componentDidMount() {
+    this.loadOptions()
   }
 
   handleInputChange = event => {
@@ -23,36 +27,38 @@ class Trade extends React.Component {
   handleBuy = event => {
     event.preventDefault();
     if (this.state.buyDollars && this.state.buyCoin) {
-      crypto.dollarsToCrypto((err, convertedAmount) => {
-        if (err) {alert('Error')}
-        else {
+      crypto.dollarsToCrypto(this.state.buyCoin, this.state.buyDollars, convertedAmount => {
+        console.log(convertedAmount)
           API.createCoin({
             symbol: this.state.buyCoin, 
             amount: convertedAmount
           }).then(dbData => {
             console.log('Coin created OK')
             console.log(dbData);
-            API.addDeposit({
+            this.setState({
+              buyCoin: ''
+            })
+          }).catch(err => console.log(err));
+          API.addDeposit({
               amount: this.state.buyDollars
             }).then(dbData => {
               console.log('Transaction OK')
               console.log(dbData)
               this.setState({
-                buyCoin: '',
                 buyDollars: ''
               })
+
+            }).catch(err => {
+              console.log(err)
             })
-          }).catch(err => {
-            alert(err)
-          })
-        }
-      })
+        
+        })
+      }
     }
-  }
 
   handleExchange = event => {
     event.preventDefault();
-    if (this.state.exCoinAmount && thie.state.exCoinFrom && this.state.exCoinTo) {
+    if (this.state.exCoinAmount && this.state.exCoinFrom && this.state.exCoinTo) {
       crypto.amountFromTo({
         from: this.state.exCoinFrom,
         to: this.state.exCoinTo,
@@ -81,14 +87,16 @@ class Trade extends React.Component {
 
   loadOptions = () => {
     API.getCoins().then(dbData => {
-      return dbData.data.map(coin => coin.symbol);
+      this.setState({
+        options: dbData.data
+      });
     }).catch(err => console.log(err));
   }
 
   render() {
     let coinOptions;
-    if(props.options) {
-      coinOptions = props.options.map(coin => <option>{coin.symbol}</option>)
+    if(this.state.options) {
+      coinOptions = this.state.options.map(coin => <option>{coin.symbol} {coin.amount}</option>)
     }
     else {
       coinOptions = <option>You do not have coins yet</option>
@@ -110,14 +118,16 @@ class Trade extends React.Component {
             <p>Buy coins with virtual United States Dollars.</p> 
             <form>
               <div className="form-group">
-                <label for="usdCurrency">Dollars</label>
-                <input type="text" className="form-control" id="usdCurrency" aria-describedby="usdAmount" placeholder="Enter amount in $$" 
+                <label htmlFor="usdCurrency">Dollars</label>
+                <input type="text" className="form-control" id="usdCurrency" aria-describedby="usdAmount" placeholder="Enter amount in $$"
+                name="buyDollars" 
                 value={this.state.buyDollars}
                 onChange={this.handleInputChange} />
               </div>
               <div className="form-group">
-                <label for="buyCurrency">Currency Name</label>
+                <label htmlFor="buyCurrency">Currency Name</label>
                 <input type="text" className="form-control" id="buyCurrency" aria-describedby="currencyInput" placeholder="Enter symbol or name" 
+                name="buyCoin"
                 value={this.state.buyCoin}
                 onChange={this.handleInputChange} />
               </div>
@@ -129,21 +139,25 @@ class Trade extends React.Component {
             <h4>Exchange Cryptocurrency</h4>
             <p>Trade a cryptocurrency for a different cryptocurrency.</p>
             <form>
-              <div class="form-group">
-                <label for="coinSelectEx">Select a coin you own.</label>
-                <select multiple class="form-control" id="coinSelectEx" value={this.state.exCoinFrom}>
+              <div className="form-group">
+                <label htmlFor="coinSelectEx">Select a coin you own.</label>
+                <select multiple className="form-control" id="coinSelectEx"
+                value={this.state.exCoinFrom}
+                name="exCoinFrom">
                   {coinOptions}
                 </select>
               </div>
               <div className="form-group">
-                <label for="usdCurrency">Amount to Trade</label>
-                <input type="text" className="form-control" id="coinCurrency" aria-describedby="coinCurrency" 
+                <label htmlFor="usdCurrency">Amount to Trade</label>
+                <input type="text" className="form-control" id="coinCurrency" aria-describedby="coinCurrency"
+                name="exCoinAmount" 
                 value={this.state.exCoinAmount}
                 onChange={this.handleInputChange}/>
               </div>
               <div className="form-group">
-                <label for="currency">Trade For: </label>
+                <label htmlFor="currency">Trade For: </label>
                 <input type="text" className="form-control" id="currency" aria-describedby="currencyInput" placeholder="Enter symbol or name" 
+                name="exCoinTo"
                 value={this.state.exCoinTo}
                 onChange={this.handleInputChange}/>
               </div>
