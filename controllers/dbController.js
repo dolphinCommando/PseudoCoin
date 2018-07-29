@@ -46,7 +46,7 @@ module.exports = {
       .where({symbol: req.params.symbol})
       .update({$set: {
         amount: req.body.amount,
-        timestamp: req.body.timestamp
+        timestamp: moment.utc()
       }})
       .then(dbData => {
         res.json(dbData)

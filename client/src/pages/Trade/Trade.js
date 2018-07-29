@@ -1,6 +1,6 @@
 import React from 'react';
 import './Trade.css';
-import Invest from '../../components/Invest';
+//import Invest from '../../components/Invest';
 import API from '../../util/api';
 import crypto from '../../util/crypto';
 
@@ -11,97 +11,161 @@ class Trade extends React.Component {
     exCoinFrom: '',
     exCoinTo: '',
     exCoinAmount: '',
-    options: []
+    options: [],
+    holdings: []
   }
   componentDidMount() {
     this.loadOptions()
   }
 
   handleInputChange = event => {
+    event.preventDefault();
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
+    //console.log(value);
   };
 
   handleBuy = event => {
     event.preventDefault();
-    if (this.state.buyDollars && this.state.buyCoin) {
-      crypto.dollarsToCrypto(this.state.buyCoin, this.state.buyDollars, convertedAmount => {
-        console.log(convertedAmount)
-          API.createCoin({
-            symbol: this.state.buyCoin, 
-            amount: convertedAmount
-          }).then(dbData => {
-            console.log('Coin created OK')
-            console.log(dbData);
-            this.setState({
-              buyCoin: ''
-            })
-          }).catch(err => console.log(err));
-          API.addDeposit({
-              amount: this.state.buyDollars
+    API.getCoins().then(coinData => {
+      if (this.state.buyDollars && this.state.buyCoin) {
+        const coinSaved = coinData.data.find(coin => coin.symbol === this.state.buyCoin);
+        console.log('coinSaved:' + coinSaved.amount);
+        crypto.dollarsToCrypto(this.state.buyCoin, this.state.buyDollars, convertedAmount => {
+          if (!coinSaved) {
+            API.createCoin({
+              symbol: this.state.buyCoin, 
+              amount: +convertedAmount
             }).then(dbData => {
-              console.log('Transaction OK')
-              console.log(dbData)
-              this.setState({
-                buyDollars: ''
-              })
-
-            }).catch(err => {
-              console.log(err)
-            })
-        
-        })
-      }
-    }
+              console.log('Coin created OK')
+              console.log(dbData);
+              API.addDeposit({
+                amount: +this.state.buyDollars
+              }).then(dbData => {
+                console.log('Transaction OK')
+                console.log(dbData)
+                this.setState({
+                  buyDollars: '',
+                  buyCoin: ''
+                })
+              }).catch(err => {
+                console.log(err)
+              })            
+            }).catch(err => console.log(err)); 
+          }
+          else {
+            console.log('update coin amount: ')
+            console.log(+(coinSaved.amount) + +convertedAmount)
+            console.log('-------------')
+            API.updateCoin(this.state.buyCoin, { 
+              amount: +(coinSaved.amount) + +convertedAmount
+            }).then(dbData => {
+              console.log('Coin created OK')
+              console.log(dbData);
+              API.addDeposit({
+                amount: +this.state.buyDollars
+              }).then(dbData => {
+                console.log('Transaction OK')
+                console.log(dbData)
+                this.setState({
+                  buyDollars: '',
+                  buyCoin: ''
+                })
+              }).catch(err => {
+                console.log(err)
+              })            
+            }).catch(err => console.log(err));             
+          } 
+          })
+        }
+    }).catch(err => console.log(err))
+  }
 
   handleExchange = event => {
     event.preventDefault();
-    if (this.state.exCoinAmount && this.state.exCoinFrom && this.state.exCoinTo) {
-      crypto.amountFromTo({
-        from: this.state.exCoinFrom,
-        to: this.state.exCoinTo,
-        amount: this.state.exCoinAmount
-      }, (err, convertedAmount) => {
-        if (err) {alert(err)}
-        else {
-          API.createCoin({
-            symbol: this.state.exCoinFrom,
-            amount: convertedAmount
-          }).then(dbData => {
-            console.log('Transaction OK')
-            console.log(dbData)
-            this.setState({
-              exCoinAmount: '',
-              exCoinFrom: '',
-              exCoinTo: ''
+    API.getCoins().then(coinData => {
+      const coinAmt = coinData.data.find(coin => coin.symbol === this.state.exCoinFrom).amount;
+      if (this.state.exCoinAmount && this.state.exCoinFrom && this.state.exCoinTo && +this.state.exCoinAmount>0 && +this.state.exCoinAmount < coinAmt) {
+        crypto.amountFromTo({
+          from: this.state.exCoinFrom,
+          to: this.state.exCoinTo,
+          amount: this.state.exCoinAmount
+        }, convertedAmount => {
+          if (coinData.data.find(coin => coin.symbol === this.state.exCoinTo)) {
+            const original = +coinData.data.find(coin => coin.symbol === this.state.exCoinTo).amount;
+            API.updateCoin(this.state.exCoinTo, {
+              amount: +original + +convertedAmount
+            }).then(dbData => {
+              console.log('Update coin OK')
+              console.log(dbData);
+              API.updateCoin(this.state.exCoinFrom, {
+                amount: +(+coinAmt - +this.state.exCoinAmount)
+              }).then(dbData => {
+                console.log('Trade OK')
+                console.log(dbData);
+                this.setState({
+                  exCoinAmount: '',
+                  exCoinFrom: '',
+                  exCoinTo: ''
+                })
+                this.loadOptions();
+              }).catch(err => {
+                console.log(err)
+              })              
+            }).catch(err => {
+              console.log(err)
             })
-          }).catch(err => {
-            console.log(err)
+          }
+          else {
+            API.createCoin({
+              symbol: this.state.exCoinFrom,
+              amount: +convertedAmount
+            }).then(dbData => {
+              console.log('Create coin OK')
+              console.log(dbData);
+              API.updateCoin(this.state.exCoinFrom, {
+                amount: +(+coinAmt - +this.state.exCoinAmount)
+              }).then(dbData => {
+                console.log('Trade OK')
+                console.log(dbData);
+                this.setState({
+                  exCoinAmount: '',
+                  exCoinFrom: '',
+                  exCoinTo: ''
+                })
+                this.loadOptions()
+              }).catch(err => {
+                console.log(err)
+              })              
+            }).catch(err => {
+              console.log(err)
+            })
+          }             
           })
         }
-      })
-    }
+    }).catch(err => console.log(err));
   }
 
   loadOptions = () => {
     API.getCoins().then(dbData => {
-      this.setState({
-        options: dbData.data
-      });
+      if(dbData.data) {
+        this.setState({
+          options: dbData.data.map(coin => <option>{coin.symbol}</option>),
+          holdings: dbData.data.map(coin => <p>{coin.symbol}: {coin.amount}</p>)
+        })
+      }
+      else {
+        this.setState({
+          options: <option>You do not have coins yet</option>,
+          holdings: <p>You do not have coins yet</p>
+        })
+      }      
     }).catch(err => console.log(err));
   }
 
   render() {
-    let coinOptions;
-    if(this.state.options) {
-      coinOptions = this.state.options.map(coin => <option>{coin.symbol} {coin.amount}</option>)
-    }
-    else {
-      coinOptions = <option>You do not have coins yet</option>
-    }
-  
     return (
       <div>
         <ul className="nav nav-tabs" id="myTab" role="tablist">
@@ -138,13 +202,15 @@ class Trade extends React.Component {
           <div className="tab-pane fade" id="exchange" role="tabpanel"       aria-labelledby="exchange-tab">
             <h4>Exchange Cryptocurrency</h4>
             <p>Trade a cryptocurrency for a different cryptocurrency.</p>
+            <div>
+              <h5>Your Coins</h5>
+              {this.state.holdings}
+            </div>
             <form>
               <div className="form-group">
                 <label htmlFor="coinSelectEx">Select a coin you own.</label>
-                <select multiple className="form-control" id="coinSelectEx"
-                value={this.state.exCoinFrom}
-                name="exCoinFrom">
-                  {coinOptions}
+                <select multiple className="form-control" id="coinSelectEx"  value={this.state.exCoinFrom} name="exCoinFrom" onChange={this.handleInputChange}>
+                  {this.state.options}
                 </select>
               </div>
               <div className="form-group">
@@ -169,9 +235,6 @@ class Trade extends React.Component {
       </div>
     )
   }
-  
-  }
-
-
+}
 
 export default Trade;

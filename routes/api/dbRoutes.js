@@ -13,7 +13,7 @@ router.route('/coins')
   .get(dbController.getCoins)
   .post(dbController.createCoin);
 
-router.route('/coins/:id')
+router.route('/coins/:symbol')
   .get(dbController.findCoin)
   .put(dbController.updateCoin)
   .delete(dbController.deleteCoin)

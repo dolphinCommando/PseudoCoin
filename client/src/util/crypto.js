@@ -184,7 +184,7 @@ export default {
     })
   },
   amountFromTo: function(body, cb) {
-    var url = CRYPTO_URL + 'price?fsym=' + body.from + '&tsyms='(body.to).String();
+    var url = CRYPTO_URL + 'price?fsym=' + body.from + '&tsyms=' + (body.to).toString();
     axios.request(url).then(response => {
       var numCoins = Object.values(response.data);
       cb(+body.amount * +numCoins)

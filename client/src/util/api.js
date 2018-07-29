@@ -13,8 +13,8 @@ export default {
   deleteCoin: function(id) {
     return axios.delete('/api/coins/' + id);
   },
-  updateCoin: function(id) {
-    return axios.put('/api/coins/' + id);
+  updateCoin: function(symbol, body) {
+    return axios.put('/api/coins/' + symbol, body);
   },
   getDeposit: function() {
     return axios.get('/api/wallet');
