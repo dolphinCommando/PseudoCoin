@@ -6,10 +6,6 @@ var depositSchema = new Schema({
     type: Number,
     required: true
   },
-  symbol: {
-    type: String,
-    required: true
-  },
   timestamp: {
     type: Number,
     required: true

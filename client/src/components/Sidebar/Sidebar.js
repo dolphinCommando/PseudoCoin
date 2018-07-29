@@ -4,7 +4,7 @@ import './Sidebar.css';
 const Sidebar = props => {
 return (
   <div className="wrapper">
-    <nav id="sidebar">
+    <nav id="sidebar" className="active">
         <span id="dismiss" onClick={() => document.getElementById('sidebar').classList.toggle('active')}>&#x2715;</span>
         <div className="sidebar-header">
             <h3>PseudoCoin</h3>

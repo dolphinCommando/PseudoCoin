@@ -46,7 +46,7 @@ module.exports = {
       .where({symbol: req.params.symbol})
       .update({$set: {
         amount: req.body.amount,
-        timestamp: req.body.timestamp
+        timestamp: moment.utc()
       }})
       .then(dbData => {
         res.json(dbData)
@@ -64,36 +64,6 @@ module.exports = {
       .catch(err => {
         res.sendStatus(404).json(err)
       })
-  },
-  getCash: function(req, res) {
-    db.Cash
-      .find({})
-      .then(dbData => {
-        res.json(dbData);
-      })
-      .catch(err => {
-        res.sendStatus(404).json(err)
-      })
-  },
-  sumCash: function(req, res) {
-    db.Cash
-      .find({})
-      .then(dbData => {
-        res.json(dbData.reduce(sumAmount, 0));
-      })
-      .catch(err => {
-        res.sendStatus(500).json(err);
-      })
-  },
-  addCash: function(req, res) {
-    db.Cash
-      .create({amount: req.body.amount, timestamp: moment.utc()})
-      .then(dbData => {
-        res.json(dbData);
-      })
-      .catch(err => {
-        res.sendStatus(500).json(err);
-      })         
   },
   getDeposit: function(req, res) {
     db.Deposit
