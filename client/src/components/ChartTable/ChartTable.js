@@ -1,8 +1,7 @@
 import React from 'react';
-//import mockData from '../../data/mockData';
 import LineChart from '../LineChart';
 import Table from '../Table';
-import API from '../../util/api';
+import crypto from '../../util/crypto';
 import moment from 'moment';
 
 class ChartTable extends React.Component {
@@ -19,39 +18,27 @@ class ChartTable extends React.Component {
     }
   }
   componentDidMount() {
-    API
-      .getCryptoData()
-      .then(response => {
-        //console.log(JSON.stringify(response));
-        this.setState({
-          coinNames: response.data
-        });
-        var arr = response.data.map(elem => elem.symbol);
-        API
-          .getCryptoMarket(arr)
-          .then(result => {
-            //console.log(JSON.stringify(result));
-            this.setState({
-              marketData: result.data
-            })
-            this.loadHistory('BTC')
-          })
-          .catch(err => {
-            console.log(err)
-          })
+    var recCoins = crypto.recommendedCoins()
+    this.setState({
+      coinNames: recCoins
+    });
+    var arr = recCoins.map(elem => elem.symbol);
+    crypto.marketDisplay(arr, market => {
+      this.setState({
+        marketData: market
       })
-      .catch(err => {
-        console.log(err)
-      })
+    });
+    this.loadHistory('BTC')
   }
   loadHistory(symbol) {
-    API.getCryptoHistoryHour(symbol).then(response => {
+    crypto.coinHistory(symbol, history => {
+      console.log('History: ' + history)
       let timearr = [];
       let closings = [];
-      response.data.forEach(function(point) {
+      history.forEach(function(point) {
         timearr.push((moment.unix(point.time).format('hh:mm a MM/DD/YY')))
       })
-      response.data.forEach(function(point) {
+      history.forEach(function(point) {
         closings.push(point.close)
       })
       this.setState({
@@ -59,7 +46,7 @@ class ChartTable extends React.Component {
         chartTitle: symbol,
         dataPoints: closings
       })
-    }).catch(err => console.log(err));
+    }); 
   }
 
   handleTableClick(e, sym) {

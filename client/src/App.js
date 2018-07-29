@@ -6,6 +6,7 @@ import NotifButton from './components/NotifButton';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Wallet from './pages/Wallet';
+import Trade from './pages/Trade';
 import Notifications from './pages/Notifications';
 import BrowserNotifications from './util/browserNotifications'
 import './App.css';
@@ -116,7 +117,7 @@ class App extends Component {
         </header>
         <p className="App-intro jumbotron">
           Welcome to PseudoCoin! Click on a coin name below to see its most recent performance.
-          <br />Use side bar for login, wallet, and notifications.
+          <br />Use the side bar for navigation to the the home page, checking your wallet, transacting trades, and notifications.
         </p>
         <Router>
           <div>
@@ -126,6 +127,8 @@ class App extends Component {
               <Route exact path="/wallet" component={Wallet} />
               {/* using the render method so we can pass in the  notificationManager as a property */}
               <Route exact path="/notifications" render={()=><Notifications notificationManager = {this.state.notificationManager}/>} />
+              <Route exact path="/trade" component={Trade} />
+              {/*<Route exact path="/notifications" component={Notifications} /> */}
             </Switch>
           </div>
         </Router>
