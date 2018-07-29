@@ -24,6 +24,25 @@ export default {
       })
     }
   },
+  dollarsToCrypto: function(sym, amount, cb) {
+    this.isCoin(sym, res => {
+      if (!res) {
+        cb(new Error('Cryptocurrency not found'))
+      }
+      else {
+        if (Number.isNaN(+amount) || +amount<=0) {
+          cb(new Error('Please enter a numeric amount greater than 0.'))
+        }
+        else {
+          const url = CRYPTO_URL + 'price?fsym=USD&tsyms=' + sym;
+          axios.request(url).then(body => {
+            var coins = +body.data[sym] * +amount;
+            cb(coins);
+          }).catch(err => cb(new Error('Could not convert.')))
+        }
+      }
+    })
+  },
   currentAvailablePrices: function(cb) {
     var coins = COINS;
     var fsyms = coins.toString();
@@ -150,7 +169,7 @@ export default {
       cb(price);
     })
   },
-  findCoin: function(coin, cb) {
+  isCoin: function(coin, cb) {
     axios.request('https://www.cryptocompare.com/api/data/coinlist/', function(body) {
       var symbolArr = [];
       var nameArr = [];
