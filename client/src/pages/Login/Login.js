@@ -1,34 +1,32 @@
 import React, { Component } from 'react';
 import './Login.css';
 
-class Login extends Component {
-    render() {
-        return(
+const Login = props => {
+    return (
             <div className="container expand-mobile sign-in-out">
                 <div className="content auto expand-mobile">
                     <div className="signout-block expand-mobile">
                         <div className="row header">
-                            <div id="login-title">
+                            <div className="login-title">
                                 <h1>Member Login</h1>
                             </div>
                             <div className="login-form">
                                 <form action="">
-                                    <div class="container">
-                                        <label for="uname"><b>Username</b></label>
-                                        <input type="text" placeholder="Enter Username" name="uname" required></input>
+                                    <div className="container">
+                                        <label for="uname-input"><b>Username</b></label>
+                                        <input type="text" placeholder="Enter Username" name="uname-input" required />
 
-                                        <label for="psw"><b>Password</b></label>
-                                        <input type="password" placeholder="Enter Password" name="psw" required></input>
+                                        <label for="psw-input"><b>Password</b></label>
+                                        <input type="password" placeholder="Enter Password" name="psw-input" required />
         
                                         <button type="submit">Login</button>
-                                        <label>
-                                            <input type="checkbox" checked="checked" name="remember"> Remember me</input>
-                                        </label>
+                                        <label for="remember-input"></label>
+                                        <input type="checkbox" checked="checked" name="remember-input"/> Remember me
                                     </div>
 
-                                    <div class="container" style="background-color:#f1f1f1">
-                                        <button type="button" class="cancelbtn">Cancel</button>
-                                        <span class="psw">Forgot <a href="#">password?</a></span>
+                                    <div className="container" styles="background-color:#f1f1f1">
+                                        <button type="button" className="cancelbtn">Cancel</button>
+                                        <span className="psw">Forgot <a href="#">password?</a></span>
                                     </div>
                                 </form>
                             </div>
@@ -36,7 +34,8 @@ class Login extends Component {
                     </div>
                 </div>
             </div>
-        ) 
-    }
+    ) 
 }
+
+export default Login;
 

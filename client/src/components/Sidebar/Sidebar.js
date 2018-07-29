@@ -23,6 +23,9 @@ return (
             <li>
                 <a href="/notifications">Notifications</a>
             </li>
+            <li>
+                <a href="/trade">Trade</a>
+            </li>
         </ul>
     </nav>
     <div id="content">

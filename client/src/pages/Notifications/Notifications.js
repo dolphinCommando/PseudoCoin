@@ -6,10 +6,13 @@ class Notifications extends React.Component {
         super(props); 
     }
     render() {
-        let notifsLi = this.props.unreadNotifs.map(notif => {
-            return(<li>{notif.message}</li>)
-        })
-        let notificationList = 
+        const notificationList = this.props.notificationManager.getNotifications();
+        console.log('Notification.render(): notificationList = ', notificationList);
+        let notifsLi = notificationList.map(notif => {
+            console.log('Notification.render(): notif = ', notif);
+            return(<li key={notif.id}>{notif.message}</li>);
+        });
+        let notificationView = 
         <ul>
             <li className="header-notifs active">
             <i className="material-icons">&#xe7f4;</i>
@@ -27,7 +30,7 @@ class Notifications extends React.Component {
         return (   
         <nav className="header-nav-dropdown">
             <h3>Notifications</h3>
-            {this.props.unreadNotifs.length ? notificationList : <h4>List is Empty</h4>}
+            {this.props.notificationManager.isUnreadNofications() ? notificationView : <h4>List is Empty</h4>}
                 
         </nav>
     );
