@@ -1,5 +1,3 @@
-
 module.exports = {
-  Deposit: require('./deposit'),
-  Coins: require('./coins')
+  User: require('./user')
 }

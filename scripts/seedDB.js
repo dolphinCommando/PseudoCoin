@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 const db = require("../models");
 var moment = require('moment');
 
+// "mongodb://localhost/cryptoTest"
 mongoose.connect(
   process.env.MONGODB_URI ||
-  "mongodb://localhost/cryptoTest"
+  "mongodb://localhost/pseudocoinDB"
 );
 
 const coinsSeed = [
@@ -53,30 +54,37 @@ const depositSeed = [
   }
 ];
 
-db.Coins
+const userSeed = [
+  {
+    username: 'john',
+    googleId: '67890'
+  },
+  {
+    username: 'jane',
+    googleId: '12345'
+  }
+]
+
+db.User
   .remove({})
-  .then(() => db.Coins.insertMany(coinsSeed))
-  .then(data => {
-    console.log('Cryptocurrency Seed...');
-    console.log(data + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
+  .then(() => createUser('jane', '12345'))
+  .then((data) => console.log('Success!'))
+  .catch(err => console.log(err));
+
+function createUser(username, googleId) {
+  var newUser = new db.User({
+    username: username,
+    googleId: googleId,
+    coins: coinsSeed,
+    deposit: depositSeed
   });
-
-db.Deposit
-  .remove({})
-  .then(() => db.Deposit.insertMany(depositSeed))
-  .then(data => {
-    console.log('Dollars Invested Seed...');
-    console.log(data + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-
-
+  newUser.save().then(() => {
+    db.User.findOne({username: 'jane'}).then(dbData => {
+      console.log(dbData);
+      process.exit(0)
+    }).catch(err => {
+      console.log(err);
+      process.exit(1)
+    })
+  }) 
+}
