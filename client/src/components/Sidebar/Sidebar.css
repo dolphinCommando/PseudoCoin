@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   align-items: stretch;
+  background-color: #f8f9fa!important;
 }
 
 #sidebar.active {

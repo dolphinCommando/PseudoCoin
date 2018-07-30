@@ -29,6 +29,7 @@ ul {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    list-style-type: none;
 }
 
 .header-nav>ul>li.header-notifs .dropdown-notifs .dropdown-notifs-title {
@@ -42,3 +43,21 @@ ul {
     padding: .6rem;
     border-bottom: 1px solid #ced4e2;
 }
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+
+/* .tile {
+border-bottom: 1px solid rgb(224, 224, 224); 
+padding: 4px; 
+display: flex; 
+cursor: move;
+flex-grow: 1; 
+color: rgb(0, 92, 156); 
+font-weight: bold;
+} */
