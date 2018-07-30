@@ -21,22 +21,22 @@ class App extends Component {
       //   the notification list should only be accessed or modified through this interface
       notificationManager:{
         // this method counts the unread notifications
-        isUnreadNofications: function() {
-          // make a copy of the nofication array so state 
+        isUnreadNotifications: function() {
+          // make a copy of the notification array so state 
           //   is not accidentally modified elsewhere
           return (this.state.notifications && this.state.notifications.length>0);
         }.bind(this), //####### remember to bind to this object or it won't work
 
         // this method counts the unread notifications
-        countUnreadNofication: function() {
-          // make a copy of the nofication array so state 
+        countUnreadNotification: function() {
+          // make a copy of the notification array so state 
           //   is not accidentally modified elsewhere
           return this.state.notifications.length;
         }.bind(this), //####### remember to bind to this object or it won't work
 
         // this method gets a copy of the unread notifications
         getNotifications: function() {
-          // make a copy of the nofication array so state 
+          // make a copy of the notification array so state 
           //   is not accidentally modified elsewhere
           console.log('getNotifications(): notifications = ', this.state.notifications)
           return Object.assign([], this.state.notifications);
@@ -102,7 +102,7 @@ class App extends Component {
       <div className="App">
         <Sidebar />
         <div className="container">
-          <div className="row align-items-start">
+          <div className="row align-items-center">
             <div className="col-6 col-md-4"></div>
             <div className="col-6 col-md-4">
               <NotifButton notificationManager = {this.state.notificationManager}/>

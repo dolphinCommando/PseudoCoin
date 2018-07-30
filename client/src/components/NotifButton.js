@@ -1,5 +1,6 @@
 import React from 'react';
 import Notifications from '../pages/Notifications';
+import './NotifButton.css';
 
 class NotifButton extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class NotifButton extends React.Component {
     render() {
       return (
         <span>
-          <button onClick={this.handleClick}>
+          <button className="notifications" onClick={this.handleClick}>
             {this.props.unreadNotifFlag ? "You've got notifications!":<i className="material-icons">&#xe7f4;</i>}
           </button>
           {

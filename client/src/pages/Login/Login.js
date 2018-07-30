@@ -11,13 +11,22 @@ const Login = props => {
                                 <h1>Member Login</h1>
                             </div>
                             <div className="login-form">
-                                <form action="">
+                                <form action="form">
                                     <div className="container">
-                                        <label for="uname-input"><b>Username</b></label>
-                                        <input type="text" placeholder="Enter Username" name="uname-input" required />
-
-                                        <label for="psw-input"><b>Password</b></label>
-                                        <input type="password" placeholder="Enter Password" name="psw-input" required />
+                                        <div className="row">
+                                            <div className="one-column inner">
+                                                <label for="uname-input"><b>Username</b></label>
+                                                <input type="text" placeholder="Enter Username" name="uname-input" required />
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <br/>
+                                        <div className="row">
+                                            <div className="one-column inner">
+                                                <label for="psw-input"><b>Password</b></label>
+                                                <input type="password" placeholder="Enter Password" name="psw-input" required />
+                                            </div>
+                                        </div>
         
                                         <button type="submit">Login</button>
                                         <label for="remember-input"></label>
