@@ -14,15 +14,8 @@ class Notifications extends React.Component {
         });
         let notificationView = 
         <ul>
-            {/* <div className="container">
-                <p>Feel free to close notifications once you're done reading them!</p>
-                <hr/>
-                <div className="notifications-dashboard">
-                    <div className="tile" draggable="true"/>
-                </div> */}
             <div className="dropdown">    
                 <li className="header-notifs active">
-                {/* <i className="material-icons">&#xe7f4;</i> */}
                 <ul className="dropdown-notifs"> 
                     <li className="dropdown-notifs-title">
                         {notifsLi} 
@@ -34,18 +27,6 @@ class Notifications extends React.Component {
                 </ul>
                 </li>
             </div>
-            {/* <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Notifications
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </div> */}
-            {/* </div> */}
         </ul>
         return (   
         <nav className="header-nav-dropdown">
