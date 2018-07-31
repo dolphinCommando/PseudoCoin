@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const path = require('path');
 var passport = require('passport');
 var passportSetup = require('./config/passport-setup');
 var keys = require('./config/keys');
@@ -26,6 +27,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(routes);
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/pseudocoinDB');
 
