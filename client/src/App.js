@@ -8,8 +8,9 @@ import Login from './pages/Login';
 import Wallet from './pages/Wallet';
 import Trade from './pages/Trade';
 import Notifications from './pages/Notifications';
-import BrowserNotifications from './util/browserNotifications'
+import BrowserNotifications from './util/browserNotifications';
 import './App.css';
+//import './NotifButton.css';
 
 class App extends Component {
   constructor(props) {

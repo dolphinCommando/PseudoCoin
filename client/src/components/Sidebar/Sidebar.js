@@ -38,7 +38,6 @@ return (
             onClick={() => document.getElementById('sidebar').classList.toggle('active')}>
                 <span>Menu</span>
             </button>
-
         </div>
     </nav>
     </div>

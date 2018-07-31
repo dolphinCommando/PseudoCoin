@@ -26,7 +26,7 @@ class NotifButton extends React.Component {
     render() {
       return (
         <span>
-          <button className="notifications" onClick={this.handleClick}>
+          <button className="btn btn-primary" onClick={this.handleClick}>
             {this.props.unreadNotifFlag ? "You've got notifications!":<i className="material-icons">&#xe7f4;</i>}
           </button>
           {
