@@ -9,7 +9,7 @@ const Login = props => {
                         <div className="row header">
                             <div className="col-12">
                                 <div className="login-title">
-                                    <h1 className="login-title">GAME OF COINS</h1>
+                                    <h1 className="login-title">GAME OF DOW JONES</h1>
                                 </div> 
                             </div>
                             <br/>
