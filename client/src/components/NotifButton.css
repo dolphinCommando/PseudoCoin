@@ -1,5 +1,7 @@
-.notifications {
+.btn btn-primary {
     display: inline-block;
+    margin-right: -204px;
+    margin-top: 3px;
     font-weight: 400;
     text-align: center;
     white-space: nowrap;
