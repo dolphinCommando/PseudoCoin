@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import Sidebar from './components/Sidebar';
 import NotifButton from './components/NotifButton';
+import Landing from './pages/Landing';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Wallet from './pages/Wallet';
 import Trade from './pages/Trade';
 import Notifications from './pages/Notifications';
-import BrowserNotifications from './util/browserNotifications'
+import BrowserNotifications from './util/browserNotifications';
+import GoogleAuth from './components/GoogleAuth';
 import './App.css';
 
 class App extends Component {
@@ -124,7 +126,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/auth/login" component={Login} />
-              <Route exact path="/profile" component={Home} />
+              <Route exact path="/profile/home" component={Home} />
               <Route exact path="/profile/wallet" component={Wallet} />
               <Route exact path="/profile/trade" component={Trade} />
               <Route exact path="/profile/notifications" render={()=><Notifications notificationManager = {this.state.notificationManager}/>} />

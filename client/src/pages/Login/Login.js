@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Login.css';
-
+//import axios from 'axios';
 const Login = props => {
     return (
             <div className="container expand-mobile sign-in-out">
@@ -13,7 +14,7 @@ const Login = props => {
                             <div className="login-form">
                                 <form>
                                     <div className="container">
-                                        <a href="auth/google" className="btn btn-primary btn-lg" role="button">Login With Google</a>
+                                        <Link to="/auth/google">Login With Google</Link>
                                     </div>
 
                                     <div className="container">
