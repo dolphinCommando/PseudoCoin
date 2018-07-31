@@ -8,25 +8,16 @@ const Login = props => {
                     <div className="signout-block expand-mobile">
                         <div className="row header">
                             <div className="login-title">
-                                <h1>Member Login</h1>
+                                <h2>Login with your Google account</h2>
                             </div>
                             <div className="login-form">
-                                <form action="">
+                                <form>
                                     <div className="container">
-                                        <label for="uname-input"><b>Username</b></label>
-                                        <input type="text" placeholder="Enter Username" name="uname-input" required />
-
-                                        <label for="psw-input"><b>Password</b></label>
-                                        <input type="password" placeholder="Enter Password" name="psw-input" required />
-        
-                                        <button type="submit">Login</button>
-                                        <label for="remember-input"></label>
-                                        <input type="checkbox" checked="checked" name="remember-input"/> Remember me
+                                        <a href="auth/google" className="btn btn-primary btn-lg" role="button">Login With Google</a>
                                     </div>
 
-                                    <div className="container" styles="background-color:#f1f1f1">
-                                        <button type="button" className="cancelbtn">Cancel</button>
-                                        <span className="psw">Forgot <a href="#">password?</a></span>
+                                    <div className="container">
+                                        <a href="/" className="btn btn-warning btn-lg" role="button">Cancel</a>
                                     </div>
                                 </form>
                             </div>

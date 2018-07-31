@@ -12,19 +12,19 @@ return (
         <ul className="list-unstyled components">
             <p>Hello!</p>
             <li>
-                <a href="/">Home</a>
+                <a href="/profile">Home</a>
             </li>
             <li>
-                <a href="/wallet">Wallet</a>
+                <a href="/profile/wallet">Wallet</a>
             </li>
             <li>
-                <a href="/trade">Trade</a>
+                <a href="/profile/trade">Trade</a>
             </li>
             <li>
-                <a href="/notifications">Notifications</a>
+                <a href="/profile/notifications">Notifications</a>
             </li>
             <li>
-                <a href="/trade">Trade</a>
+                <a href="/auth/logout">Logout</a>
             </li>
         </ul>
     </nav>

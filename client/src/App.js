@@ -122,13 +122,12 @@ class App extends Component {
         <Router>
           <div>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/wallet" component={Wallet} />
-              {/* using the render method so we can pass in the  notificationManager as a property */}
-              <Route exact path="/notifications" render={()=><Notifications notificationManager = {this.state.notificationManager}/>} />
-              <Route exact path="/trade" component={Trade} />
-              {/*<Route exact path="/notifications" component={Notifications} /> */}
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/auth/login" component={Login} />
+              <Route exact path="/profile" component={Home} />
+              <Route exact path="/profile/wallet" component={Wallet} />
+              <Route exact path="/profile/trade" component={Trade} />
+              <Route exact path="/profile/notifications" render={()=><Notifications notificationManager = {this.state.notificationManager}/>} />
             </Switch>
           </div>
         </Router>
