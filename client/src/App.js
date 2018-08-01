@@ -9,15 +9,29 @@ import Wallet from './pages/Wallet';
 import Trade from './pages/Trade';
 import Notifications from './pages/Notifications';
 import BrowserNotifications from './util/browserNotifications';
+import Crypto from './util/crypto';
 import './App.css';
+import Notifications1 from './pages/Notifications1';
 //import './NotifButton.css';
 
 class App extends Component {
+  COINS = [
+    'BTC', 'ETH', 'LTC', 'XRP', 'BCH',
+    'XMR', 'ZEC', 'DASH', 'ETC', 'USDT', 
+    'EOS', 'XLM', 'ADA', 'TRX', 'NEO'];
+  COIN_NAMES = [
+  'Bitcoin', 'Ethereum', 'Litecoin', 'Ripple', 'Bitcoin Cash',
+  'Monero', 'Zcash', 'Dash', 'Ethereum Classic', 
+  'Tether', 'EOS', 'Stellar', 'Cardano', 'TRON', 'NEO'
+  ];
+  state = {
+      currentData: {}
+  };
   constructor(props) {
     super (props);
     
     this.state = {
-      notifications: [],
+      notifications: [<Crypto/>],
       // this class contains the methods to access and modify the notification list
       //   the notification list should only be accessed or modified through this interface
       notificationManager:{
@@ -84,13 +98,23 @@ class App extends Component {
     } 
   }
 
-  componentDidMount() {
-
+  getMarketData = (sym)=>{
     this.state.notificationManager.addNotifications([
-      {id:'1', message:'1', read:false},
-      {id:'2', message:'2', read:false},
-      {id:'3', message:'3', read:false}
-    ]);
+    crypto.marketDisplay(sym, (data)=>{
+        console.log(data);
+        this.setState({
+            currentData:data
+        })
+    })
+  ])  
+  
+
+  // // componentDidMount() {
+  // //   this.state.notificationManager.addNotifications([
+  // //     // {this.state.currentData},
+  // //     // {id:'2', message:'2', read:false},
+  // //     // {id:'3', message:'3', read:false}
+  // //   ]);
     // make an ajax call
     /*
     fetch('uri').then(data) {
@@ -118,7 +142,7 @@ class App extends Component {
         </header>
         <p className="App-intro jumbotron">
           Welcome to PseudoCoin! Click on a coin name below to see its most recent performance.
-          <br />Use the side bar for navigation to the the home page, checking your wallet, transacting trades, and notifications.
+          <br />Use the side bar for navigation to the home page, checking your wallet, transacting trades, and notifications.
         </p>
         <Router>
           <div>
@@ -127,8 +151,9 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/wallet" component={Wallet} />
               {/* using the render method so we can pass in the  notificationManager as a property */}
-              <Route exact path="/notifications" render={()=><Notifications notificationManager = {this.state.notificationManager}/>} />
+              <Route exact path="/notifications" render={()=><Notifications notificationManager = {this.state.notificationManager} isButton={false}/>} />
               <Route exact path="/trade" component={Trade} />
+              <Route exact path="/notifications-ex" render = {()=> <Notifications1 notificationManager = {this.state.notificationManager}/>} />
               {/*<Route exact path="/notifications" component={Notifications} /> */}
             </Switch>
           </div>

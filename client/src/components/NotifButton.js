@@ -1,5 +1,6 @@
 import React from 'react';
 import Notifications from '../pages/Notifications';
+import Crypto from '../util/crypto';
 import './NotifButton.css';
 
 class NotifButton extends React.Component {
@@ -29,14 +30,20 @@ class NotifButton extends React.Component {
           <button className="btn btn-primary" onClick={this.handleClick}>
             {this.props.unreadNotifFlag ? "You've got notifications!":<i className="material-icons">&#xe7f4;</i>}
           </button>
+          <div className="nav-notifications">
           {
             this.state.dropdown && 
             <Notifications 
               notificationManager = {this.props.notificationManager}
+              marketDisplay = {this.props.marketDisplay}
+              coinHistory = {this.props.coinHistory}
               onMarkedNotificationsRead={this.handleAllRead} 
               unreadNotifs={this.props.unreadNotifFlag}
+              isButton={true}
             />
           }
+          </div>
+
         </span>)
     }
 }
