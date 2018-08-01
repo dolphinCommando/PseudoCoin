@@ -9,6 +9,10 @@ var depositSchema = new Schema({
   timestamp: {
     type: Number,
     required: true
+  },
+  username: {
+    type: String,
+    required: true
   }
 });
 

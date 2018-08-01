@@ -1,8 +1,116 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Login.css';
+import API from '../../util/api';
+import { Redirect } from 'react-router-dom';
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      usernameLogin: '',
+      passwordLogin: '',
+      usernameNew: '',
+      passwordNew: '',
+      loginErr: '',
+      registerErr: '',
+      redirect: false,
+      redirectTo: ''
+    }
+    this.clearState = this.clearState.bind(this);
+  }
 
-const Login = props => {
+  componentDidMount() {
+    this.clearState()
+  }
+  clearState() {
+    this.setState({
+      usernameLogin: '',
+      passwordLogin: '',
+      usernameNew: '',
+      passwordNew: '',
+      loginErr: '',
+      registerErr: ''     
+    })
+  }
+  setRedirect = (urlString) => {
+    this.setState({
+      redirect: true,
+      redirectTo: urlString
+    })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirectTo} />
+    }
+  }
+
+  handleInputChange = event => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+    //console.log(value);
+  };
+
+  handleLogin = event => {
+    event.preventDefault();
+    if (this.state.usernameLogin && this.state.passwordLogin) {
+      API.verifyUser(this.state.usernameLogin, this.state.passwordLogin)
+      .then((record) => {
+        if (record.data) {
+          document.cookie = "pseudocoinUser=" + record.data.username;
+          this.setRedirect('/profile')
+        }
+        else {
+          this.setState({
+            loginErr: <p>User not found</p>
+          })
+        }
+      })
+    }
+    else {
+      this.setState({
+        loginErr: <p>Field is empty</p> 
+      })
+    }
+  }
+/*
+  handleCancel = event => {
+    event.preventDefault();
+    this.clearState();
+  }
+*/
+  handleRegister = event => {
+    event.preventDefault();
+    if (this.state.usernameNew && this.state.passwordNew) {
+        API.verifyUser(this.state.usernameNew, this.state.passwordNew)
+        .then((loginRecord) => {
+            if(loginRecord.data) {
+                this.setState({
+                    registerErr: <p>You have already registered with PseudoCoin</p>
+                })
+            }
+            else {
+                API.registerUser(this.state.usernameNew, this.state.passwordNew)
+                .then((record) => {
+                    console.log(record);
+                    document.cookie = "pseudocoinUser=" + record.data.username;
+                    this.setRedirect('/profile')
+                })
+            }
+        })
+    }
+    else {
+        this.setState({
+            registerErr: <p>Must register with both username and password</p>
+        })
+    }
+  }
+
+  render() {
     return (
+        <div>
+            {this.renderRedirect()}
             <div className="container expand-mobile sign-in-out">
                 <div className="content auto expand-mobile">
                     <div className="signout-block expand-mobile">
@@ -19,30 +127,49 @@ const Login = props => {
                                     <div className="container">
                                         <div className="row">
                                             <div className="col-lg-8">
-                                                <label for="uname-input"><b>Username</b></label>
+                                            <h3>Login</h3>
+                                                <label for="usernameLogin"><b>Username</b></label>
                                                 <br/>
-                                                <input type="text" placeholder="Jon Snow" name="uname-input" required />
+                                                <input type="text" placeholder="Jon Snow" onChange={this.handleInputChange}name="usernameLogin" required />
                                             </div>
                                         </div>
                                         <br/>
                                         <div className="row">
                                             <div className="col-lg-8">
-                                                <label for="psw-input"><b>Password</b></label>
+                                                <label for="passwordLogin"><b>Password</b></label>
                                                 <br/>
-                                                <input type="password" placeholder="Winter is Coming" name="psw-input" required />
+                                                <input type="password" placeholder="Winter is Coming" onChange={this.handleInputChange} name="passwordLogin" required />
+                                            </div>
+                                        </div>
+                                        {this.state.loginErr}
+                                        <br/>
+                                        <button type="submit" className="w3-button w3-blue w3-round-large w3-round-size" onClick={this.handleLogin}>Login</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr />
+                            <div className="register-form">
+                                <form action="form">
+                                    <div className="container">
+                                        <div className="row">
+                                            <div className="col-lg-8">
+                                            <h3>Register</h3>
+                                                <label for="usernameNew"><b>Username</b></label>
+                                                <br/>
+                                                <input type="text" placeholder="Ned Stark" onChange={this.handleInputChange}name="usernameNew" required />
                                             </div>
                                         </div>
                                         <br/>
-                                        <button type="submit" className="w3-button w3-red w3-round-large w3-round-size">Login</button>
-                                        <label for="remember-input"></label>
+                                        <div className="row">
+                                            <div className="col-lg-8">
+                                                <label for="passwordNew"><b>Password</b></label>
+                                                <br/>
+                                                <input type="password" placeholder="Winter is Coming" onChange={this.handleInputChange} name="passwordNew" required />
+                                            </div>
+                                        </div>
+                                        {this.state.registerErr}
                                         <br/>
-                                        <input type="checkbox" checked="checked" name="remember-input"/> Remember me
-                                    </div>
-                                    <br/>
-                                    <div className="container" styles="background-color:#f1f1f1">
-                                        <button type="button" className="cancelbtn w3-button w3-red w3-round-large w3-round-size">Cancel</button>
-                                        <br/>
-                                        <span className="psw">Forgot <a href="#">password?</a></span>
+                                        <button type="submit" className="w3-button w3-blue w3-round-large w3-round-size" onClick={this.handleRegister}>Register</button>
                                     </div>
                                 </form>
                             </div>
@@ -51,7 +178,9 @@ const Login = props => {
                     </div>
                 </div>
             </div>
+        </div>
     ) 
+  }
 }
 
 export default Login;

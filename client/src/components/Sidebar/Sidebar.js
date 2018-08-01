@@ -1,7 +1,20 @@
 import React from 'react';
+import { BrowserRouter as Router, a } from 'react-router-dom';
+import ProtectedRoute from '../ProtectedRoute';
 import './Sidebar.css';
 
-const Sidebar = props => {
+class Sidebar extends React.Component {
+state = {
+  loggedIn: true
+}
+
+logoutUser = () => {
+  document.cookie = "pseudocoinUser=";
+  this.setState({
+      loggedIn: false
+  })
+}
+render() {
 return (
   <div className="wrapper">
     <nav id="sidebar" className="active">
@@ -12,19 +25,19 @@ return (
         <ul className="list-unstyled components">
             <p>Hello!</p>
             <li>
-                <a href="/">Home</a>
+                <a href="/profile">Home</a>
             </li>
             <li>
-                <a href="/wallet">Wallet</a>
+                <a href="/profile/wallet">Wallet</a>
             </li>
             <li>
-                <a href="/trade">Trade</a>
+                <a href="/profile/trade">Trade</a>
             </li>
             <li>
-                <a href="/notifications">Notifications</a>
+                <a href="/profile/notifications">Notifications</a>
             </li>
             <li>
-                <a href="/trade">Trade</a>
+                <button className="btn btn-dark" onClick={() => this.logoutUser()}>Sign Out</button>
             </li>
         </ul>
     </nav>
@@ -43,6 +56,7 @@ return (
     </div>
 </div>
 )
+}
 }
 
 export default Sidebar;

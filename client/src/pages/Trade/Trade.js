@@ -30,9 +30,13 @@ class Trade extends React.Component {
   handleBuy = event => {
     event.preventDefault();
     API.getCoins().then(coinData => {
+      console.log(coinData)
       if (this.state.buyDollars && this.state.buyCoin) {
-        const coinSaved = coinData.data.find(coin => coin.symbol === this.state.buyCoin);
-        console.log('coinSaved:' + coinSaved.amount);
+        var coinSaved = null;
+        if (coinData.data.length) {
+          coinSaved = coinData.data.find(coin => coin.symbol === this.state.buyCoin);
+          console.log('coinSaved:' + coinSaved.amount);
+        }
         crypto.dollarsToCrypto(this.state.buyCoin, this.state.buyDollars, convertedAmount => {
           if (!coinSaved) {
             API.createCoin({
@@ -86,7 +90,10 @@ class Trade extends React.Component {
   handleExchange = event => {
     event.preventDefault();
     API.getCoins().then(coinData => {
-      const coinAmt = coinData.data.find(coin => coin.symbol === this.state.exCoinFrom).amount;
+      var coinAmt = null;
+      if (coinData.data.length) {
+        coinAmt = coinData.data.find(coin => coin.symbol === this.state.exCoinFrom).amount;
+      }
       if (this.state.exCoinAmount && this.state.exCoinFrom && this.state.exCoinTo && +this.state.exCoinAmount>0 && +this.state.exCoinAmount < coinAmt) {
         crypto.amountFromTo({
           from: this.state.exCoinFrom,
@@ -150,7 +157,7 @@ class Trade extends React.Component {
 
   loadOptions = () => {
     API.getCoins().then(dbData => {
-      if(dbData.data) {
+      if(dbData.data.length) {
         this.setState({
           options: dbData.data.map(coin => <option>{coin.symbol}</option>),
           holdings: dbData.data.map(coin => <p>{coin.symbol}: {coin.amount}</p>)
