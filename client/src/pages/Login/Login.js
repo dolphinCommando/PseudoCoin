@@ -19,7 +19,8 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    this.clearState()
+    this.clearState();
+    this.setCookie('');
   }
   clearState() {
     this.setState({
@@ -42,6 +43,9 @@ class Login extends React.Component {
       return <Redirect to={this.state.redirectTo} />
     }
   }
+  setCookie(name) {
+      document.cookie = "pseudocoinUser=" + name;
+  }
 
   handleInputChange = event => {
     event.preventDefault();
@@ -58,8 +62,8 @@ class Login extends React.Component {
       API.verifyUser(this.state.usernameLogin, this.state.passwordLogin)
       .then((record) => {
         if (record.data) {
-          document.cookie = "pseudocoinUser=" + record.data.username;
-          this.setRedirect('/profile')
+          this.setCookie(record.data.username)
+          this.setRedirect('/profile');
         }
         else {
           this.setState({
@@ -93,9 +97,9 @@ class Login extends React.Component {
             else {
                 API.registerUser(this.state.usernameNew, this.state.passwordNew)
                 .then((record) => {
-                    console.log(record);
-                    document.cookie = "pseudocoinUser=" + record.data.username;
-                    this.setRedirect('/profile')
+                    this.setCookie(record.data.username)
+                    this.setRedirect('/profile');
+                      
                 })
             }
         })
@@ -128,7 +132,7 @@ class Login extends React.Component {
                                         <div className="row">
                                             <div className="col-lg-8">
                                             <h3>Login</h3>
-                                                <label for="usernameLogin"><b>Username</b></label>
+                                                <label htmlFor="usernameLogin"><b>Username</b></label>
                                                 <br/>
                                                 <input type="text" placeholder="Jon Snow" onChange={this.handleInputChange}name="usernameLogin" required />
                                             </div>
@@ -136,7 +140,7 @@ class Login extends React.Component {
                                         <br/>
                                         <div className="row">
                                             <div className="col-lg-8">
-                                                <label for="passwordLogin"><b>Password</b></label>
+                                                <label htmlFor="passwordLogin"><b>Password</b></label>
                                                 <br/>
                                                 <input type="password" placeholder="Winter is Coming" onChange={this.handleInputChange} name="passwordLogin" required />
                                             </div>
@@ -154,7 +158,7 @@ class Login extends React.Component {
                                         <div className="row">
                                             <div className="col-lg-8">
                                             <h3>Register</h3>
-                                                <label for="usernameNew"><b>Username</b></label>
+                                                <label htmlFor="usernameNew"><b>Username</b></label>
                                                 <br/>
                                                 <input type="text" placeholder="Ned Stark" onChange={this.handleInputChange}name="usernameNew" required />
                                             </div>
@@ -162,7 +166,7 @@ class Login extends React.Component {
                                         <br/>
                                         <div className="row">
                                             <div className="col-lg-8">
-                                                <label for="passwordNew"><b>Password</b></label>
+                                                <label htmlFor="passwordNew"><b>Password</b></label>
                                                 <br/>
                                                 <input type="password" placeholder="Winter is Coming" onChange={this.handleInputChange} name="passwordNew" required />
                                             </div>

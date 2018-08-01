@@ -1,20 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, a } from 'react-router-dom';
-import ProtectedRoute from '../ProtectedRoute';
+
 import './Sidebar.css';
 
-class Sidebar extends React.Component {
-state = {
-  loggedIn: true
-}
+const Sidebar = (props) => {
 
-logoutUser = () => {
+const logoutUser = () => {
   document.cookie = "pseudocoinUser=";
-  this.setState({
-      loggedIn: false
-  })
-}
-render() {
+  window.location.reload();
+};
+
+
 return (
   <div className="wrapper">
     <nav id="sidebar" className="active">
@@ -37,7 +32,7 @@ return (
                 <a href="/profile/notifications">Notifications</a>
             </li>
             <li>
-                <button className="btn btn-dark" onClick={() => this.logoutUser()}>Sign Out</button>
+                <button className="btn btn-dark" onClick={() => logoutUser()}>Sign Out</button>
             </li>
         </ul>
     </nav>
@@ -56,7 +51,7 @@ return (
     </div>
 </div>
 )
-}
+
 }
 
 export default Sidebar;

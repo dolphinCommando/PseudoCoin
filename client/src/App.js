@@ -123,7 +123,7 @@ class App extends Component {
         <Router>
           <div>
             <Switch>
-              <Route exact path="/" component={Login} />
+              <Route exact path="/" component={Login}/>
               <ProtectedRoute exact path="/profile" component={Home} />
               <ProtectedRoute exact path="/profile/wallet" component={Wallet} />
               <ProtectedRoute exact path="/profile/notifications" render={()=><Notifications notificationManager = {this.state.notificationManager}/>} />
