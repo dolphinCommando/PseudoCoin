@@ -1,0 +1,9 @@
+.buyTradeErr {
+ color: red;
+ font-size: 1.25em;
+}
+.success {
+ color: lime;
+ font-size: 1.25em;
+
+}
