@@ -13,12 +13,12 @@ const Login = props => {
                                 </div> 
                             </div>
                             <br/>
-                            <div className="col-lg-8">
+                            <div className="col-lg-12">
                             <div className="login-form">
                                 <form action="form">
                                     <div className="container">
                                         <div className="row">
-                                            <div className="col-lg-8">
+                                            <div className="col-lg-12">
                                                 <label for="uname-input"><b>Username</b></label>
                                                 <br/>
                                                 <input type="text" placeholder="Jon Snow" name="uname-input" required />
@@ -26,7 +26,7 @@ const Login = props => {
                                         </div>
                                         <br/>
                                         <div className="row">
-                                            <div className="col-lg-8">
+                                            <div className="col-lg-12">
                                                 <label for="psw-input"><b>Password</b></label>
                                                 <br/>
                                                 <input type="password" placeholder="Winter is Coming" name="psw-input" required />

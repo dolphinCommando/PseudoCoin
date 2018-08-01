@@ -9,6 +9,7 @@ import Wallet from './pages/Wallet';
 import Trade from './pages/Trade';
 import Notifications from './pages/Notifications';
 import BrowserNotifications from './util/browserNotifications';
+import Notifications1 from './pages/Notifications1';
 import './App.css';
 //import './NotifButton.css';
 
@@ -84,20 +85,15 @@ class App extends Component {
     } 
   }
 
-  componentDidMount() {
+  getMarketData = (sym)=>{
+        crypto.marketDisplay(sym, (data)=>{
+            console.log(data);
+            this.setState({
+                currentData:data
+            })
+        })
 
-    this.state.notificationManager.addNotifications([
-      {id:'1', message:'1', read:false},
-      {id:'2', message:'2', read:false},
-      {id:'3', message:'3', read:false}
-    ]);
-    // make an ajax call
-    /*
-    fetch('uri').then(data) {
-      using data update the notification list
     }
-    */
-  }
   render() {
     return (
       <div className="App">
@@ -129,6 +125,7 @@ class App extends Component {
               {/* using the render method so we can pass in the  notificationManager as a property */}
               <Route exact path="/notifications" render={()=><Notifications notificationManager = {this.state.notificationManager}/>} />
               <Route exact path="/trade" component={Trade} />
+              <Route exact path="/notifications-ex" render={()=><Notifications1 notificationManager = {this.state.notificationManager}/>} />
               {/*<Route exact path="/notifications" component={Notifications} /> */}
             </Switch>
           </div>

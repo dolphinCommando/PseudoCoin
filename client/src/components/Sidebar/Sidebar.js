@@ -24,7 +24,7 @@ return (
                 <a href="/notifications">Notifications</a>
             </li>
             <li>
-                <a href="/trade">Trade</a>
+                <a href="/notifications1">Notifications</a>
             </li>
         </ul>
     </nav>

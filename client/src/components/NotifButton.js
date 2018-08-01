@@ -1,5 +1,7 @@
 import React from 'react';
 import Notifications from '../pages/Notifications';
+import crypto from '../util/crypto';
+//import axios from from 'axios';
 import './NotifButton.css';
 
 class NotifButton extends React.Component {
@@ -33,6 +35,8 @@ class NotifButton extends React.Component {
             this.state.dropdown && 
             <Notifications 
               notificationManager = {this.props.notificationManager}
+              marketDisplay = {this.props.marketDisplay}
+              coinHistory = {this.props.coinHistory}
               onMarkedNotificationsRead={this.handleAllRead} 
               unreadNotifs={this.props.unreadNotifFlag}
             />

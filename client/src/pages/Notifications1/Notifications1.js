@@ -1,25 +1,15 @@
 import React from 'react';
-import './Notifications.css';
-//import './src/util/crypto.js';
+import './Notifications1.css';
 import axios from 'axios';
 import crypto from '../../util/crypto';
 
-class Notifications extends React.Component {
-    COINS = [
-        'BTC', 'ETH', 'LTC', 'XRP', 'BCH',
-        'XMR', 'ZEC', 'DASH', 'ETC', 'USDT', 
-        'EOS', 'XLM', 'ADA', 'TRX', 'NEO'];
-    COIN_NAMES = [
-    'Bitcoin', 'Ethereum', 'Litecoin', 'Ripple', 'Bitcoin Cash',
-    'Monero', 'Zcash', 'Dash', 'Ethereum Classic', 
-    'Tether', 'EOS', 'Stellar', 'Cardano', 'TRON', 'NEO'
-    ];
-    state = {
-        currentData: []
-    };
+class Notifications1 extends React.Component {
     constructor(props) {
         super(props); 
     }
+    state = {
+        currentData: [<crypto />]
+    };
     getMarketData = (sym)=>{
         crypto.marketDisplay(sym, (data)=>{
             console.log(data);
@@ -30,13 +20,11 @@ class Notifications extends React.Component {
 
     }
     render() {
-        //const CRYPTO_URL = 'https://min-api.cryptocompare.com/data/';
-        
         const notificationList = this.props.notificationManager.getNotifications();
-        //console.log('Notification.render(): notificationList = ', CRYPTO_URL, this.COINS, this.COIN_NAMES, notificationList);
+        console.log('Notification.render(): notificationList = ', notificationList);
         let notifsLi = notificationList.map(notif => {
             console.log('Notification.render(): notif = ', notif);
-            return(<li key={notif.id}>{notif.message}</li>);
+            return(<li key={notif.id}>{notif.message}</li>)
         });
         let styleClass = this.props.isButton ? 'dropdown nav-container' : ' dropdown nav-container wide-width';
         let notificationView = 
@@ -47,9 +35,9 @@ class Notifications extends React.Component {
                 <ul className="dropdown-notifs"> 
                     <li className="dropdown-notifs-title">
                         {notifsLi}
-                        <div >
+                        <div className="coin-results">
                             {this.COINS.map((v,i)=>{
-                                return <button className="nav-button btn btn-primary" onClick={()=>{this.getMarketData(v)}}>{this.COIN_NAMES[i]}</button>
+                                return <button className="nav-button btn btn-primary mx-auto" onClick={()=>{this.getMarketData(v)}}>{this.COIN_NAMES[i]}</button>
                             })}
                             <div class="results">
                             {/* {JSON.stringify(this.state.currentData)} */}
@@ -86,5 +74,6 @@ class Notifications extends React.Component {
     );
   }  
 }   
+        
 
-export default Notifications;
+export default Notifications1;
