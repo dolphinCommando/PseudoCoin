@@ -118,7 +118,7 @@ class App extends Component {
         <header className="App-header jumbotron">
           <img src={logo} className="App-icon" alt="icon" />
           <p className="App-intro lead">
-            Welcome to PseudoCoin! Click on a coin name below to see its most recent  performance.
+            Welcome to PseudoCoin!
             <br />Use the side bar for navigation to the the home page, checking your wallet, transacting trades, and notifications.
           </p>
         </header>
