@@ -51,7 +51,8 @@ class Notifications extends React.Component {
                             {this.COINS.map((v,i)=>{
                                 return <button className="nav-button btn btn-primary" onClick={()=>{this.getMarketData(v)}}>{this.COIN_NAMES[i]}</button>
                             })}
-                            <div class="results">
+
+                            <div className="results">
                             {/* {JSON.stringify(this.state.currentData)} */}
                             {this.state.currentData.map(d => (
                                 <div>

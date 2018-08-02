@@ -90,3 +90,16 @@ ul ul a {
     background: #6d7fcc;
     text-align: center;
 }
+
+.nav-button {
+    display: block;
+    background-color: white;
+    margin-bottom: 4px;
+    border: none;
+    color: black;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+wide-width {
+    width: 100%;
+}

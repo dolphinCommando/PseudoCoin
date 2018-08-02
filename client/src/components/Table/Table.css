@@ -5,3 +5,8 @@ tbody tr:hover {
 td {
   padding: 1%;
 }
+
+
+table {
+  width: 100%;
+}
