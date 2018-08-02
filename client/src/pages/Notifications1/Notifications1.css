@@ -151,3 +151,9 @@ h1 {
 *, ::after, ::before {
     box-sizing: border-box;
 }
+
+#notifications-title {
+    color: black;
+    margin-top: 20px;
+    font-family: 'Cardo', serif;
+}

@@ -49,7 +49,7 @@ class Notifications extends React.Component {
                         {notifsLi}
                         <div >
                             {this.COINS.map((v,i)=>{
-                                return <button className="nav-button btn btn-primary" onClick={()=>{this.getMarketData(v)}}>{this.COIN_NAMES[i]}</button>
+                                return <button className="nav-button btn btn-primary mx-auto" onClick={()=>{this.getMarketData(v)}}>{this.COIN_NAMES[i]}</button>
                             })}
                             <div className="card results" styles="width: 18rem;">
                                 {/* {JSON.stringify(this.state.currentData)} */}

@@ -42,8 +42,8 @@ class Notifications1 extends React.Component {
         <div className="content auto expand-mobile">
             <div class="row header">
                 <div class="col-12">
-                    <div class="login-title">
-                        <h1 class="login-title">Notifications</h1>
+                    <div class="notifications-title">
+                        <h1 class="notifications-title">Notifications</h1>
                     </div>
                 </div>
                 <br/>
