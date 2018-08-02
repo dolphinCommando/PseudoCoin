@@ -84,6 +84,13 @@ body {
     max-height: 650px;
 }
 
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+    text-align: center;
+}
+
 .nav-button {
     display: block;
     background-color: white;

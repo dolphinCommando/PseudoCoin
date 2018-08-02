@@ -23,6 +23,9 @@ return (
             <li>
                 <a href="/notifications">Notifications</a>
             </li>
+            <li>
+                <a href="/notifications-ex">Notifications</a>
+            </li>
         </ul>
     </nav>
     <div id="content">

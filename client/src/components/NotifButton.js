@@ -1,6 +1,7 @@
 import React from 'react';
 import Notifications from '../pages/Notifications';
-import Crypto from '../util/crypto';
+import crypto from '../util/crypto';
+//import axios from from 'axios';
 import './NotifButton.css';
 
 class NotifButton extends React.Component {

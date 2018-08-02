@@ -107,21 +107,7 @@ class App extends Component {
         })
     })
   ])  
-  
-
-  // // componentDidMount() {
-  // //   this.state.notificationManager.addNotifications([
-  // //     // {this.state.currentData},
-  // //     // {id:'2', message:'2', read:false},
-  // //     // {id:'3', message:'3', read:false}
-  // //   ]);
-    // make an ajax call
-    /*
-    fetch('uri').then(data) {
-      using data update the notification list
-    }
-    */
-  }
+ }
   render() {
     return (
       <div className="App">

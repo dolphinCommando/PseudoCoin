@@ -1,1 +1,1 @@
-export { default } from "./Notifcations1";
+export { default } from "./Notifications1";
