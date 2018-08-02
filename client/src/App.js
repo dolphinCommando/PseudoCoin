@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom';
+import logo from './LogoMakr_6LhWUg.png';
+import blockchain from './blockchain.jpg';
 import Sidebar from './components/Sidebar';
 import NotifButton from './components/NotifButton';
+import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Wallet from './pages/Wallet';
@@ -108,46 +110,44 @@ class App extends Component {
     })
   ])  
  }
+  
   render() {
     return (
       <div className="App">
-        <Sidebar />
         <div className="container">
-          <div className="row align-items-center">
-            <div className="col-6 col-md-4"></div>
-            <div className="col-6 col-md-4">
+          <div className="row align-items-center justify-content-left">
+            <div className="mr-4"><Sidebar /></div>
+            <div>
               <NotifButton notificationManager = {this.state.notificationManager}/>
             </div>
           </div>
         </div>  
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">PseudoCoin
-            <i className="fa fa-dollar">&#xf155;</i>  
-          </h1>  
+        <header className="App-header jumbotron">
+          <img src={logo} className="App-icon" alt="icon" />
+          <p className="App-intro lead">
+            Welcome to PseudoCoin! Click on a coin name below to see its most recent  performance.
+            <br />Use the side bar for navigation to the the home page, checking your wallet, transacting trades, and notifications.
+          </p>
         </header>
-        <p className="App-intro jumbotron">
-          Welcome to PseudoCoin! Click on a coin name below to see its most recent performance.
-          <br />Use the side bar for navigation to the home page, checking your wallet, transacting trades, and notifications.
-        </p>
+
         <Router>
           <div>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/wallet" component={Wallet} />
-              {/* using the render method so we can pass in the  notificationManager as a property */}
-              <Route exact path="/notifications" render={()=><Notifications notificationManager = {this.state.notificationManager} isButton={false}/>} />
-              <Route exact path="/trade" component={Trade} />
-              <Route exact path="/notifications-ex" render = {()=> <Notifications1 notificationManager = {this.state.notificationManager}/>} />
-              {/*<Route exact path="/notifications" component={Notifications} /> */}
+              <Route exact path="/" component={Login}/>
+              <ProtectedRoute exact path="/profile" component={Home} />
+              <ProtectedRoute exact path="/profile/wallet" component={Wallet} />
+              <ProtectedRoute exact path="/profile/notifications" render={()=><Notifications notificationManager = {this.state.notificationManager} isButton={false}/>} />
+              
+              <ProtectedRoute exact path="/profile/trade" component={Trade} /> 
+              <ProtectedRoute exact path="/profile/notifications-ex" render = {()=> <Notifications1 notificationManager = {this.state.notificationManager}/>} />
+
             </Switch>
           </div>
         </Router>
-        
       </div>
     );
   }
 }
+
 
 export default App;
