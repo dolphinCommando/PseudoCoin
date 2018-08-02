@@ -24,13 +24,15 @@ class Wallet extends React.Component {
       API.getCoins()
       .then(coinData => {
         console.log(coinData.data);
-        crypto.sumCryptos(coinData.data, (usd) => {
+        if (coinData.data.length) {
+        crypto.sumCryptos(coinData.data, usd => {
           //console.log(usd)
           this.setState({
             shares: coinData.data,
             value: usd
           })
         })
+      }
         
       })
     }
@@ -44,7 +46,10 @@ class Wallet extends React.Component {
       })
     }
     calculateWorth() {
-      return (100 * +((+this.state.value - +this.state.dollars)/(+this.state.dollars))).toPrecision(5);
+      if (this.state.dollars) {
+        return (100 * +((+this.state.value - +this.state.dollars)/(+this.state.dollars))).toPrecision(5);
+      }
+      else return 0;
     }
 
     render() {

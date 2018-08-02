@@ -1,7 +1,15 @@
 import React from 'react';
+
 import './Sidebar.css';
 
-const Sidebar = props => {
+const Sidebar = (props) => {
+
+const logoutUser = () => {
+  document.cookie = "pseudocoinUser=";
+  window.location.reload();
+};
+
+
 return (
   <div className="wrapper">
     <nav id="sidebar" className="active">
@@ -12,19 +20,22 @@ return (
         <ul className="list-unstyled components">
             <p>Hello!</p>
             <li>
-                <a href="/">Home</a>
+                <a href="/profile">Home</a>
             </li>
             <li>
-                <a href="/wallet">Wallet</a>
+                <a href="/profile/wallet">Wallet</a>
             </li>
             <li>
-                <a href="/trade">Trade</a>
+                <a href="/profile/trade">Trade</a>
             </li>
-            {/* <li>
-                <a href="/notifications">Notifications</a>
-            </li> */}
             <li>
-                <a href="/notifications">Notifications</a>
+                <a href="/profile/notifications-ex">Notifications-Ex</a>
+            </li>
+            <li>
+                <a href="/profile/notifications">Notifications</a>
+            </li>
+            <li>
+              <button className="btn btn-dark" onClick={() => logoutUser()}>Sign Out</button>
             </li>
         </ul>
     </nav>
@@ -43,6 +54,7 @@ return (
     </div>
 </div>
 )
+
 }
 
 export default Sidebar;
