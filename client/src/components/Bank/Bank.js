@@ -14,7 +14,7 @@ const Bank = props => {
   });
   }
   else {
-    data.push(<div><p>No investments yet.</p></div>);
+    data = <p>Go to the Trade page to buy currencies.</p>
   }
   return (
     <div>

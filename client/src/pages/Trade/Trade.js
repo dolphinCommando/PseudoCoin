@@ -100,7 +100,8 @@ class Trade extends React.Component {
                       buyCoin: '',
                       buyErr: ''
                     })
-                    this.setSuccess(true)
+                    this.setSuccess(true);
+
                   }).catch(err => {
                     console.log(err)
                   })            
@@ -141,11 +142,16 @@ class Trade extends React.Component {
 
   handleExchange = event => {
     event.preventDefault();
+    console.log(this.state.exCoinFrom);
+    console.log(this.state.exCoinAmount);
+    console.log(this.state.exCoinTo);
+    var coinAmt = 0;
     API.getCoins().then(coinData => {
-      var coinAmt = null;
+      console.log(coinData);
       if (coinData.data.length) {
         coinAmt = coinData.data.find(coin => coin.symbol === this.state.exCoinFrom);
       }
+      console.log(coinAmt)
       if (this.state.exCoinAmount && this.state.exCoinFrom && this.state.exCoinTo && +this.state.exCoinAmount>0 && +this.state.exCoinAmount < coinAmt) {
         crypto.amountFromTo({
           from: this.state.exCoinFrom,
@@ -206,12 +212,20 @@ class Trade extends React.Component {
         }
     }).catch(err => console.log(err));
   }
+  handleExCoinFrom = (event) => {
+    event.preventDefault();
+    this.setState({
+      exCoinFrom: event.target.value
+    })
+  }
 
   loadOptions = () => {
     API.getCoins().then(dbData => {
       if(dbData.data.length) {
         this.setState({
-          options: dbData.data.map(coin => <option>{coin.symbol}</option>),
+          options: dbData.data.map(coin => 
+            <option value={coin.symbol}>{coin.symbol}: {coin.amount}</option>
+          ),
           holdings: dbData.data.map(coin => <p>{coin.symbol}: {coin.amount}</p>)
         })
       }
@@ -232,7 +246,7 @@ class Trade extends React.Component {
             <a className="nav-link active" id="buy-tab" data-toggle="tab" href="#buy" role="tab" aria-controls="buy" aria-selected="true">Buy</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" id="exchange-tab" data-toggle="tab" href="#exchange" role="tab" aria-controls="exchange" aria-selected="false">Exchange</a>
+            <a className="nav-link" id="exchange-tab" data-toggle="tab" href="#exchange" role="tab" aria-controls="exchange" aria-selected="false">Trade</a>
           </li>
         </ul>
         <div className="tab-content" id="myTabContent">
@@ -269,7 +283,7 @@ class Trade extends React.Component {
             <form>
               <div className="form-group">
                 <label htmlFor="coinSelectEx">Select a coin you own.</label>
-                <select multiple className="form-control" id="coinSelectEx"  value={this.state.exCoinFrom} name="exCoinFrom" onChange={this.handleInputChange}>
+                <select className="form-control" id="coinSelectEx" onChange={this.handleExCoinFrom}>
                   {this.state.options}
                 </select>
               </div>
