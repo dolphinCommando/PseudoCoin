@@ -51,28 +51,27 @@ class Notifications extends React.Component {
                             {this.COINS.map((v,i)=>{
                                 return <button className="nav-button btn btn-primary" onClick={()=>{this.getMarketData(v)}}>{this.COIN_NAMES[i]}</button>
                             })}
-
-                            <div className="results">
-                            {/* {JSON.stringify(this.state.currentData)} */}
-                            {this.state.currentData.map(d => (
-                                <div>
-                                    <div className="label">symbol</div><div className="value">{d.symbol}</div>
-                                    <div className="label">price</div><div className="value">{d.price}</div>
-                                    <div className="label">change</div><div className="value">{d.change}</div>
-                                    <div className="label">open</div><div className="value">{d.open}</div>
-                                    <div className="label">high</div><div className="value">{d.high}</div>
-                                    <div className="label">low</div><div className="value">{d.low}</div>
-                                    <div className="label">volume</div><div className="value">{d.volume}</div>
-                                    <div className="label">supply</div><div className="value">{d.supply}</div>
-                                    <div className="label">cap</div><div className="value">{d.cap}</div>
-                                </div>
-                            ))}  
-                        </div> 
+                            <div className="card results" styles="width: 18rem;">
+                                {/* {JSON.stringify(this.state.currentData)} */}
+                                {this.state.currentData.map(d => (
+                                    <div>
+                                        <div className="label">Symbol:</div><div className="value">{d.symbol}</div>
+                                        <div className="label">Price:</div><div className="value">{d.price}</div>
+                                        <div className="label">Change:</div><div className="value">{d.change}</div>
+                                        <div className="label">Open:</div><div className="value">{d.open}</div>
+                                        <div className="label">High:</div><div className="value">{d.high}</div>
+                                        <div className="label">Low:</div><div className="value">{d.low}</div>
+                                        <div className="label">Volume:</div><div className="value">{d.volume}</div>
+                                        <div className="label">Supply:</div><div className="value">{d.supply}</div>
+                                        <div className="label">Cap:</div><div className="value">{d.cap}</div>
+                                    </div>
+                                ))}  
+                            </div> 
                         </div>
                         <button onClick={this.props.onMarkedNotificationsRead}>Mark All As Read</button>
                     </li> 
                     <li className="dropdown-notifs-see-all">
-                        <a href="/notifications">See All Notifications</a>
+                        <a href="/notifications-ex">See All Notifications</a>
                     </li>
                 </ul>
                 </li>

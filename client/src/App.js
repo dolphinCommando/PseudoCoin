@@ -22,10 +22,9 @@ class App extends Component {
     'XMR', 'ZEC', 'DASH', 'ETC', 'USDT', 
     'EOS', 'XLM', 'ADA', 'TRX', 'NEO'];
   COIN_NAMES = [
-  'Bitcoin', 'Ethereum', 'Litecoin', 'Ripple', 'Bitcoin Cash',
-  'Monero', 'Zcash', 'Dash', 'Ethereum Classic', 
-  'Tether', 'EOS', 'Stellar', 'Cardano', 'TRON', 'NEO'
-  ];
+    'Bitcoin', 'Ethereum', 'Litecoin', 'Ripple', 'Bitcoin Cash',
+    'Monero', 'Zcash', 'Dash', 'Ethereum Classic', 
+    'Tether', 'EOS', 'Stellar', 'Cardano', 'TRON', 'NEO'];
   state = {
       currentData: {}
   };
@@ -33,33 +32,27 @@ class App extends Component {
     super (props);
     
     this.state = {
-      notifications: [<Crypto/>],
+      notifications: [],
       // this class contains the methods to access and modify the notification list
-      //   the notification list should only be accessed or modified through this interface
+      //  the notification list should only be accessed or modified through this interface
       notificationManager:{
         // this method counts the unread notifications
         isUnreadNotifications: function() {
-          // make a copy of the notification array so state 
-          //   is not accidentally modified elsewhere
           return (this.state.notifications && this.state.notifications.length>0);
-        }.bind(this), //####### remember to bind to this object or it won't work
+        }.bind(this),
 
         // this method counts the unread notifications
         countUnreadNotification: function() {
-          // make a copy of the notification array so state 
-          //   is not accidentally modified elsewhere
           return this.state.notifications.length;
-        }.bind(this), //####### remember to bind to this object or it won't work
+        }.bind(this),
 
         // this method gets a copy of the unread notifications
         getNotifications: function() {
-          // make a copy of the notification array so state 
-          //   is not accidentally modified elsewhere
           console.log('getNotifications(): notifications = ', this.state.notifications)
           return Object.assign([], this.state.notifications);
-        }.bind(this), //####### remember to bind to this object or it won't work
+        }.bind(this),
 
-        // this method add a single notification
+        // this method adds a single notification
         addNotification: function(message, read) {
           if(!read) BrowserNotifications.notify(message);
           console.log('addNotification() called with: message = ', message, ', read = ', read, 'state = ', this.state);
@@ -72,7 +65,7 @@ class App extends Component {
               }
             ]
           });
-        }.bind(this), //####### remember to bind to this object or it won't work
+        }.bind(this),
 
         // this method add a array of notifications
         addNotifications: function(notifications, overwrite) {
@@ -90,12 +83,12 @@ class App extends Component {
               notifications: [...notifications]
             });
           }
-        }.bind(this), //####### remember to bind to this object or it won't work
+        }.bind(this),
 
         // this method clears the notification list
         clearUnreadNotifications: function() {
           this.setState({notifications:[]});
-        }.bind(this)//####### remember to bind to this object or it won't work
+        }.bind(this)
       },
     } 
   }
@@ -140,7 +133,6 @@ class App extends Component {
               
               <ProtectedRoute exact path="/profile/trade" component={Trade} /> 
               <ProtectedRoute exact path="/profile/notifications-ex" render = {()=> <Notifications1 notificationManager = {this.state.notificationManager}/>} />
-
             </Switch>
           </div>
         </Router>
