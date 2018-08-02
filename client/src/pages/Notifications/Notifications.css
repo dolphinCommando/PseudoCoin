@@ -75,3 +75,31 @@ body {
     -o-transition-timing-function: cubic-bezier(.68,-.55,.265,1.55);
     transition-timing-function: cubic-bezier(.68,-.55,.265,1.55);
 }
+
+.nav-container {
+    position: absolute;
+    background-color: white;
+    padding: 24px;
+    z-index: 200;
+    max-height: 650px;
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+    text-align: center;
+}
+
+.nav-button {
+    display: block;
+    background-color: white;
+    margin-bottom: 4px;
+    border: none;
+    color: black;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+wide-width {
+    width: 100%;
+}

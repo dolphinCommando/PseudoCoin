@@ -11,15 +11,29 @@ import Wallet from './pages/Wallet';
 import Trade from './pages/Trade';
 import Notifications from './pages/Notifications';
 import BrowserNotifications from './util/browserNotifications';
+import Crypto from './util/crypto';
 import './App.css';
+import Notifications1 from './pages/Notifications1';
 //import './NotifButton.css';
 
 class App extends Component {
+  COINS = [
+    'BTC', 'ETH', 'LTC', 'XRP', 'BCH',
+    'XMR', 'ZEC', 'DASH', 'ETC', 'USDT', 
+    'EOS', 'XLM', 'ADA', 'TRX', 'NEO'];
+  COIN_NAMES = [
+  'Bitcoin', 'Ethereum', 'Litecoin', 'Ripple', 'Bitcoin Cash',
+  'Monero', 'Zcash', 'Dash', 'Ethereum Classic', 
+  'Tether', 'EOS', 'Stellar', 'Cardano', 'TRON', 'NEO'
+  ];
+  state = {
+      currentData: {}
+  };
   constructor(props) {
     super (props);
     
     this.state = {
-      notifications: [],
+      notifications: [<Crypto/>],
       // this class contains the methods to access and modify the notification list
       //   the notification list should only be accessed or modified through this interface
       notificationManager:{
@@ -86,22 +100,17 @@ class App extends Component {
     } 
   }
 
-
-   
-  componentDidMount() {
+  getMarketData = (sym)=>{
     this.state.notificationManager.addNotifications([
-      {id:'1', message:'1', read:false},
-      {id:'2', message:'2', read:false},
-      {id:'3', message:'3', read:false}
-    ]);
-    // make an ajax call
-    /*
-    fetch('uri').then(data) {
-      using data update the notification list
-    }
-    */
-  }
- 
+    crypto.marketDisplay(sym, (data)=>{
+        console.log(data);
+        this.setState({
+            currentData:data
+        })
+    })
+  ])  
+ }
+  
   render() {
     return (
       <div className="App">
@@ -120,14 +129,18 @@ class App extends Component {
             <br />Use the side bar for navigation to the the home page, checking your wallet, transacting trades, and notifications.
           </p>
         </header>
+
         <Router>
           <div>
             <Switch>
               <Route exact path="/" component={Login}/>
               <ProtectedRoute exact path="/profile" component={Home} />
               <ProtectedRoute exact path="/profile/wallet" component={Wallet} />
-              <ProtectedRoute exact path="/profile/notifications" render={()=><Notifications notificationManager = {this.state.notificationManager}/>} />
+              <ProtectedRoute exact path="/profile/notifications" render={()=><Notifications notificationManager = {this.state.notificationManager} isButton={false}/>} />
+              
               <ProtectedRoute exact path="/profile/trade" component={Trade} /> 
+              <ProtectedRoute exact path="/profile/notifications-ex" render = {()=> <Notifications1 notificationManager = {this.state.notificationManager}/>} />
+
             </Switch>
           </div>
         </Router>

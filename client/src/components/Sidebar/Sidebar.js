@@ -29,10 +29,13 @@ return (
                 <a href="/profile/trade">Trade</a>
             </li>
             <li>
+                <a href="/profile/notifications-ex">Notifications-Ex</a>
+            </li>
+            <li>
                 <a href="/profile/notifications">Notifications</a>
             </li>
             <li>
-                <button className="btn btn-dark" onClick={() => logoutUser()}>Sign Out</button>
+              <button className="btn btn-dark" onClick={() => logoutUser()}>Sign Out</button>
             </li>
         </ul>
     </nav>

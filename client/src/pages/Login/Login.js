@@ -125,22 +125,26 @@ class Login extends React.Component {
                                 </div> 
                             </div>
                             <br/>
-                            <div className="col-lg-8">
+                            <div className="col-lg-12">
                             <div className="login-form">
                                 <form action="form">
                                     <div className="container">
                                         <div className="row">
-                                            <div className="col-lg-8">
+
+                                            <div className="col-lg-2">
                                             <h3>Login</h3>
                                                 <label htmlFor="usernameLogin"><b>Username</b></label>
+
                                                 <br/>
                                                 <input type="text" placeholder="Jon Snow" onChange={this.handleInputChange}name="usernameLogin" required />
                                             </div>
                                         </div>
                                         <br/>
                                         <div className="row">
-                                            <div className="col-lg-8">
+
+                                            <div className="col-lg-2">
                                                 <label htmlFor="passwordLogin"><b>Password</b></label>
+
                                                 <br/>
                                                 <input type="password" placeholder="Winter is Coming" onChange={this.handleInputChange} name="passwordLogin" required />
                                             </div>
