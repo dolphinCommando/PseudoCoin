@@ -1,4 +1,153 @@
-wide-width {
+.wide-width {
     width: 100%;
     margin: 0 auto;
+}
+
+.nav-container {
+    position: absolute;
+    float: center;
+    background-color: white;
+    padding: 24px;
+    z-index: 200;
+    max-height: 650px;
+    text-align: center;
+    left: 10%;
+    right: 10%;
+
+}
+
+.header-nav>ul>li.header-notifs.active {
+    visibility: visible;
+    opacity: 1;
+    right: 0;
+    width: 90%;
+}
+
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card .label {
+    font: bold;
+}
+
+.mx-auto {
+    width: 100%;
+}
+
+.sign-in-out {
+    background-image: url(https://cdn-images-1.medium.com/max/1024/1*8f29YAiwwtEqT9TD_CVtUw.jpeg) repeat-y;
+    background-position: 50% 0;
+    background-repeat: repeat-y;
+    margin: 0 auto;
+    width: auto;
+    max-width: 806px;
+    min-height: 714px;
+    margin-top: 40px;
+    border-width: 15px 13px;
+    border-style: solid;
+    border-color: #e8e7e4;
+}
+
+.content {
+    width: 419px;
+    min-height: 407px;
+    margin: 0 auto;
+    margin-top: 111px;
+    background-color: #fff;
+    background: rgba(255,255,255,0.96);
+    float: none;
+}
+
+.signout-block {
+    clear: both;
+    margin: 0 auto;
+}
+
+.header-column {
+    padding: 10px;
+}
+.row {
+    width: auto;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+    position: relative;
+    font-size: 22px;
+}
+.col-12 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+#login-title {
+    color: #62b5e5;
+    margin-top: 20px;
+    font-family: 'Cardo', serif;
+}
+
+h1 {
+    font-family: 'Cardo', serif;
+}
+
+.col-lg-8 {
+    font-size: 22px;
+}
+
+.w3-btn {
+    width:150px;
+}
+
+.sign-in-out .card {
+    background-image: url(https://cdn-images-1.medium.com/max/1024/1*8f29YAiwwtEqT9TD_CVtUw.jpeg);
+    background-position: 50% 0;
+    background-repeat: repeat-y;
+    background-size: cover;
+    margin: 0 auto;
+    width: auto;
+    max-width: 806px;
+    max-height: 714px;
+    margin-top: 40px;
+    border-width: 15px 13px;
+    border-style: solid;
+    border-color: #e8e7e4;
+}
+
+.content {
+    width: 419px;
+    min-height: 407px;
+    margin: 0 auto;
+    margin-top: 56px;
+    background-color: #fff;
+    background: rgba(255,255,255,0.96);
+    float: none;
+}
+
+.signout-block {
+    clear: both;
+    margin: 0 auto;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
 }

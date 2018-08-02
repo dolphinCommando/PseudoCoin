@@ -8,7 +8,7 @@
     top: 3.5rem;
     display: inline-block;
     z-index: 11;
-    width: 100vw;
+    width: 90%;
     background-color: #fff;
     border-top: 1px solid #ced4e2;
     box-shadow: 1px 2px 5px 0 rgba(56,56,56,.3);
@@ -16,10 +16,13 @@
     transition-timing-function: cubic-bezier(.68,-.55,.265,1.55);
 }
 
+
+
 .header-nav>ul>li.header-notifs.active {
     visibility: visible;
     opacity: 1;
     right: 0;
+    width: 90%;
 }
 
 ul {
@@ -78,10 +81,14 @@ body {
 
 .nav-container {
     position: absolute;
+    float: center;
     background-color: white;
     padding: 24px;
     z-index: 200;
     max-height: 650px;
+    left: 10%;
+    right: 10%;
+    text-align: center;
 }
 
 ul ul a {
@@ -100,6 +107,24 @@ ul ul a {
     border-bottom: 1px solid rgba(0,0,0,.15);
 }
 
-wide-width {
+.wide-width {
     width: 100%;
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: inline-block;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 200px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card .label {
+    font: bold;
 }
